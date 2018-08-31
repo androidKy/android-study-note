@@ -33,7 +33,6 @@
 
 - 版本新特性
 
-  
 
 ##  View绘制流程
 
@@ -273,18 +272,22 @@ View绘制主要分为三个过程分别是measure、layout、draw。
 [参考链接](https://blog.csdn.net/universus/article/details/6211589)
 
 1. **为什么要用Binder机制进行IPC？**
+
 2. **什么是Binder机制？**
+
 3. **Binder机制原理是什么？**
 
-####1、因为Binder机制对于Android系统来说比其他IPC方式更加安全和高性能。
+* 因为Binder机制对于Android系统来说比其他IPC方式更加安全和高性能。IPC方式有三种，**共享内存、Binder、Socket/管道/消息队列**，在安全方面，传统IPC的接收方无法获得对方进程可靠的UID/PID（用户ID/进程ID），从而无法鉴别对方身份。在传输性能上，
 
-IPC方式有三种，**共享内存、Binder、Socket/管道/消息队列**，在安全方面，传统IPC的接收方无法获得对方进程可靠的UID/PID（用户ID/进程ID），从而无法鉴别对方身份。在传输性能上，（1）**共享内存**不用拷贝数据，但控制复杂，难以使用；
-(2)**Socket**是一款通用接口，传输效率低且开销低，主要用在跨网络的进程间通信和本机上的进程间的低速通信，**消息队列和管道**采用存储-转发方式，即数据先从发送方缓存区拷贝到内核开辟的缓存区中，然后再从内核缓存区拷贝到接收方缓存区，至少有两次拷贝过程，效率比较低。
-(3)**Binder**基于**Client-Server**通信模式，传输过程只需一次拷贝，并且为发送方添加UID/PID身份，既支持匿名Binder也支持匿名Binder。
+  * **共享内存**不用拷贝数据，但控制复杂，难以使用；
 
-####2、Binder是Android系统跨进程通信（IPC）方式之一，是Client客户端和Server服务端的纽带，通过Binder可以让进程间的通信更加高效和安全。
+  * **Socket**是一款通用接口，传输效率低且开销低，主要用在跨网络的进程间通信和本机上的进程间的低速通信，**消息队列和管道**采用存储-转发方式，即数据先从发送方缓存区拷贝到内核开辟的缓存区中，然后再从内核缓存区拷贝到接收方缓存区，至少有两次拷贝过程，效率比较低。
 
-####3、Binder机制原理
+  * **Binder**基于**Client-Server**通信模式，传输过程只需一次拷贝，并且为发送方添加UID/PID身份，既支持匿名Binder也支持匿名Binder。
+
+* Binder是Android系统跨进程通信（IPC）方式之一，是Client客户端和Server服务端的纽带，通过Binder可以让进程间的通信更加高效和安全。
+
+* Binder机制原理
 ![代码执行过程](https://i.imgur.com/aJPUNls.png)
 
 基于Client-Server通信方式，与其他IPC方式不同，Binder使用了面向对象的思想来描述作为访问接入点的Binder及其在client中的入口：**Binder是一个位于Server中的对象，该对象提供了一套方法用于实现对服务的请求，就像类的成员函数。**遍布于client中的入口可以看成指向這个Binder对象的指针，只要获得指针就可以通过Binder对象访问Server。面向对象思想的引入将进程间通信转化为通过对某个Binder对象的引用调用该对象的方法，而其独特之处在于Binder对象是一个可以跨进程引用的对象，它的实体位于一个进程中，而它的引用却遍布于系统的各个进程之中。
@@ -345,9 +348,8 @@ jkfda
 ### 6.其他事件分发
 ### 7.总结 
 
-
-###Serizliable和Parcelable两种序列化原理和对比
-
+### Serizliable和Parcelable两种序列化原理和对比
 
 
-###SparseArray、ArrayMap和HashMap的实现原理和对比
+
+### SparseArray、ArrayMap和HashMap的实现原理和对比
