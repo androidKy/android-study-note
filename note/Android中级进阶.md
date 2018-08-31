@@ -285,9 +285,9 @@ View绘制主要分为三个过程分别是measure、layout、draw。
 
   * **Binder**基于**Client-Server**通信模式，传输过程只需一次拷贝，并且为发送方添加UID/PID身份，既支持匿名Binder也支持匿名Binder。
 
-* Binder是Android系统跨进程通信（IPC）方式之一，是Client客户端和Server服务端的纽带，通过Binder可以让进程间的通信更加高效和安全。
+    Binder是Android系统跨进程通信（IPC）方式之一，是Client客户端和Server服务端的纽带，通过Binder可以让进程间的通信更加高效和安全。
 
-* Binder机制原理
+####3、Binder机制原理
 ![代码执行过程](https://i.imgur.com/aJPUNls.png)
 
 基于Client-Server通信方式，与其他IPC方式不同，Binder使用了面向对象的思想来描述作为访问接入点的Binder及其在client中的入口：**Binder是一个位于Server中的对象，该对象提供了一套方法用于实现对服务的请求，就像类的成员函数。**遍布于client中的入口可以看成指向這个Binder对象的指针，只要获得指针就可以通过Binder对象访问Server。面向对象思想的引入将进程间通信转化为通过对某个Binder对象的引用调用该对象的方法，而其独特之处在于Binder对象是一个可以跨进程引用的对象，它的实体位于一个进程中，而它的引用却遍布于系统的各个进程之中。
@@ -317,7 +317,6 @@ View绘制主要分为三个过程分别是measure、layout、draw。
 ![触摸事件发生顺序](https://upload-images.jianshu.io/upload_images/944365-79b1e86793514e99.png)
 
 (2)事件分发的本质：将点击事件(MotionEvent)传递到某个具体的view或者viewGroup和处理的整个过程。
-		
 ```
 事件传递的过程 = 分发过程
 ```
@@ -339,7 +338,7 @@ View绘制主要分为三个过程分别是measure、layout、draw。
 
 ### 2.事件分发机制的源码分析
 
-jkfda 
+
 
 
 ### 3.工作流程
