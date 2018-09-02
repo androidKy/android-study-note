@@ -340,15 +340,15 @@ public class AlertDialog{
 
 ## 3.观察者模式
 
-#### 定义
+#### 3.1 定义
 
 定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。
 
-#### 作用
+#### 3.2 作用
 
 解决类与类之间有逻辑交互时存在的耦合度。
 
-#### 用法
+#### 3.3 用法
 
 ```java
 //抽象类观察者
@@ -406,7 +406,7 @@ public class Test{
 }
 ```
 
-#### 使用场景
+#### 3.4 使用场景
 
 * 关联行为场景，并且关联行为是可拆分的，而不是 **组合** 关系。
 
@@ -418,28 +418,62 @@ public class Test{
 
 ## 4.代理模式
 
-#### 定义
+#### 4.1 定义
 
 给某一个对象提供一个代理对象，并由代理对象控制原对象的引用。
 
-#### 作用
+#### 4.2 作用
 
 给对象增加了本地化的扩展，增加了存取操作控制。但缺点是产生多余的代理类。
 
-#### 用法
-
-* UML类图
-
-![](proxy-uml.png)
+#### 4.3 用法
 
 * 角色介绍
   * 抽象对象角色：声明了目标对象和代理对象的共同接口，可以在任何使用目标对象的地方都可以使用代理对象。
   * 目标对象角色：定义了代理对象所代表的目标对象。
   * 代理对象角色：代理对象内部含有目标对象的引用，可以在任何时候操作目标对象。
 
-#### 使用场景
+* 示例代码
 
+  ```java
+  public interface ICommon{
+      public void proxyMethod();
+  }
+  
+  public class TargetObj implements ICommon{
+      @Override
+      public void proxyMethod(){
+          //共同的接口
+      }
+  }
+  
+  public class ProxyObj implements ICommon{
+  	//init targetObj method by constructor
+      private ICommon common;
+    
+      public ProxyObj(ICommon common){
+          this.common = common;
+      }
+      //init targetObj directly
+      //private ICommon common = new TargetObj();
+      
+      @Override
+      public void proxyMethod(){
+          //此处可以处理一些未调用目标对象的逻辑
+          
+          //此处调用目标对象的接口
+  		if(common != null)
+          {
+              cmmon.proxyMethod();
+          }
+          //此处可以处理一些调用目标对象之后的逻辑
+      }
+  }
+  ```
 
+#### 4.4 使用场景
+
+* 当不能直接对目标对象直接操作引用时。
 
 ## 5.装饰(包装)模式
 
@@ -518,11 +552,75 @@ class Client{
 
 例如：java IO流是典型的装饰模式。
 
-## 6.抽象工厂模式
+## 6.工厂方法模式
+
+### 6.1 定义
+
+定义一个用于创建对象的接口，让子类决定实例化哪个类。PS:是简单工厂模式的扩展。
+
+### 6.2 作用
+
+通过依赖注入以达到解耦、复用和方便后期维护拓展的目的 。
+
+### 6.3 用法
+
+* 角色关系
+
+  * 抽象工厂：工厂方法模式的核心，定义创建对象的统一接口。
+  * 抽象产品：需要创建对象的父类，定义产品的一些通用接口。
+  * 具体工厂：实现或者继承抽象工厂的子类，实现具体的业务逻辑，创建具体的对象。
+  * 具体产品：实现或者继承抽象产品的子类，某个具体产品的对象。
+
+* 实例代码
+
+  ```java
+  public abstract class Factory{
+      public abstract Product createProduct();
+  }
+  
+  public abstract class Product{
+      public abstract void method(){};
+  }
+  
+  public class ProductA extends Product{
+      @Override
+      public void method(){
+          
+      }
+  }
+  
+  public class ProductB extends Product{
+      @Override
+      public void method(){
+          
+      }
+  }
+  
+  public class FactoryA extends Factory{
+      @Override
+      public Product createProduct(){
+          return new ProductA();
+      }
+  }
+  
+  public class FactoryB extends Factory{
+      @Override
+      public Product createProduct(){
+          return new ProductB();
+      }
+  }
+  ```
+
+### 6.4 使用场景
+
+* 在任何需要生成复杂对象的地方。
+* 如果用new就可以完成创建的对象无需使用。
+
+## 7.抽象工厂模式
 
 
 
-## 7.工厂模式
+## 
 
 
 
