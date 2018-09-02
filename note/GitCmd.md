@@ -30,23 +30,23 @@
 * echo "# Record_R9" >> README.md  创建README.md文件
 * git add . 提交当前目录下的所有文件 
 * git add README.md 提交当前目录下的README.md文件
-	 git commit -m "first commit"	提交到本地仓库 
+* git commit -m "first commit"	提交到本地仓库 
 * git remote add origin https://github.com/github账户名/仓库名（仓库链接） 关联远程仓库
-   git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
+* git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
 * git pull 将远程仓库的文件拉到本地仓库
 
 ### git本地仓库操作命令
 
 - **git add <文件名或者.>**（添加到git仓库)
-	 **git commit -m <这次提交的变化>**	(提交到本地仓库)
+- **git commit -m <这次提交的变化>**	(提交到本地仓库)
 - **git status**  (查看仓库的状态变化)
 - **git diff**   (查看仓库的文件哪些发生变化)
 - **git log**   (显示从最近到最远的提交日志)  git log --pretty=oneline (精简输出信息)
 - **git reset --hard <版本号>**  (版本回退，回退到选择的版本号）
 - **git reflog** (查看命令历史）
 - **git checkout -- <文件名>** (撤销修改，让这个文件回到最近一次git commit或git add时的状态)
-	 **git reset HEAD <文件名>**		(撤销修改，把暂存区的修改撤销掉（unstage），重新放回工作区)
-	 **git rm <文件名>**		(删除文件，把仓库的文件删除,然后必须重新commit)
+- **git reset HEAD <文件名>**		(撤销修改，把暂存区的修改撤销掉（unstage），重新放回工作区)
+-  **git rm <文件名>**		(删除文件，把仓库的文件删除,然后必须重新commit)
 - **git checkout -- <文件名>**  (用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”）
 
 ### git分支管理
@@ -54,7 +54,7 @@
 - **git checkout -b <分支名>**  (创建分支，并且切换到该分支）
 - **git branch <分支名>** (创建分支)
 - **git checkout <分支名>** (切换到该分支)
-	 **git branch** 	(查看当前分支,当前分支前面有个*号)
+- **git branch** 	(查看当前分支,当前分支前面有个*号)
 - **git merge <分支名>** (合并某分支到当前分支）
 - **git branch -d <分支名>** (删除分支）
 - **git branch -D <分支名>** (丢弃一个没有被合并过的分支，强行删除）
@@ -86,7 +86,7 @@
 ### 其他命令
 
 - **cat <fileName>** （查看文件内容）
-	 **rm <fileName>**	（删除文件）
+- **rm <fileName>**	（删除文件）
 - **git remote -v** (显示远程仓库更详细的信息）
 
 ### git忽略文件配置
