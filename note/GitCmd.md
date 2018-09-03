@@ -56,11 +56,20 @@
 - **git checkout <分支名>** (切换到该分支)
 - **git branch** 	(查看当前分支,当前分支前面有个*号)
 - **git merge <分支名>** (合并某分支到当前分支）
+<<<<<<< HEAD
 - **git branch -d <分支名>** (删除分支）
 - **git branch -D <分支名>** (丢弃一个没有被合并过的分支，强行删除）
 - **git log --graph --pretty=oneline --abbrev-commit** (查看分支的合并情况）
 - **git merge --no-ff -m "merge with no-ff" dev** (禁用merge的fast forward模式,可以看出曾合并的历史）
 - **git push origin(远程仓库名）dev(分支名)** （推送分支，如果推送失败，先用git pull抓取远程的新提交）  
+=======
+- **git branch -d <分支名>** (删除本地分支）
+- **git push origin  --delete <分支名>** （删除远程分支）
+- **git branch -D <分支名>** (丢弃一个没有被合并过的分支，强行删除）
+- **git log --graph --pretty=oneline --abbrev-commit** (查看分支的合并情况）
+- **git merge --no-ff -m "merge with no-ff" dev** (禁用merge的fast forward模式,可以看出曾合并的历史）
+- **git push origin(远程仓库名或者git地址）dev(分支名)** （推送到远程分支，如果推送失败，先用git pull抓取远程的新提交）  
+>>>>>>> dev
 - **git checkout -b dev origin/dev** (另一台电脑在dev分支上开发，创建远程origin的dev分支到本地）
 
 ### git标签命令
@@ -129,6 +138,11 @@
 
 * **failed to push some refs to**：
 
+<<<<<<< HEAD
+=======
+  没有先pull最新的仓库版本到本地，再次push时会提示冲突，这种情况大多数发生在共同开发或者两台不同的机器时，解决办法是先pull远程仓库到本地，然后再push。
+
+>>>>>>> dev
 
 
 
