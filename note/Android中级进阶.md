@@ -307,10 +307,10 @@ View绘制主要分为三个过程分别是measure、layout、draw。
 
 事件分类：
 
-* ACTION_DOWN:按下view,所有事件的开始，只要触摸屏幕就会发生
-* ACTION_MOVE：滑动view
-* ACTION_UP:手指抬起view
-* ACTIONI_CANCEL:结束事件(非人为）
+* ACTION_DOWN:按下view,所有事件的开始，只要触摸屏幕就会发生。
+* ACTION_MOVE：滑动view。
+* ACTION_UP:手指抬起view。
+* ACTION_CANCEL:结束事件(非人为）。
 
 从手指接触屏幕至手指离开屏幕，这个过程产生的一系列事件如下图：
 

@@ -9,23 +9,23 @@
 		答：手势事件冲突。
 	
 	（3）对之前做过的产品的介绍和功能点
-
+	
 	（4）多线程的使用
 		
 		答：进程是指一个进行中的程序，一个进程包含多个线程（至少包含一个线程），线程是进程中一个独立的控制单元，使用多线程最好不要不断创建
 		新线程（会消耗过多的资源），可以采用线程池进行管理，复用一些已经完成任务的但仍活着的线程。
-
+	
 	（5）怎么优化内存
 		
 		答：1、防止内存溢出和泄漏；2、尽量复用一些可以复用的对象；3、用一些较轻量级的容器，比如SparseArray；4、尽量避免用枚举类型；
 		5、ListView的convertView的复用;6、数据相关：序列化数据使用protobuf可以比xml省30%内存，慎用shareprefercnce，因为对于同一个sp，
 		会将整个xml文件载入内存，有时候为了读一个配置，就会将几百k的数据读进内存，数据库字段尽量精简，只读取所需字段。
 		7、dex优化，代码优化，谨慎使用外部库。8、图片压缩。9、缓存池的大小（LruCache)：图片的缓存，不用经常被GC。
-
+	
 	（6）多渠道打包方式
-
+	
 	（7）有没有开发过gradle
-
+	
 	（8）解析xml和解析json有什么区别，为什么要用json
 
 ---
@@ -39,7 +39,7 @@
 （2）rtmp和rtsp的区别和优缺点
 
 （3）怎样优化内存
-	
+
 （4）怎样提升性能
 
 （5）怎样处理大图片
@@ -71,7 +71,7 @@
 （18）**MVP和MVVM的区别和各自的优缺点**
 
 （19）如何自定义View
-		
+
 （20）**熟不熟悉RxJava**
 
 ---
@@ -79,51 +79,51 @@
 **广州爱拍游戏网络公司**
 
 	有面试题，如下：
-
+	
 	（1）为什么不推荐使用枚举类型，请说明详细理由？
 		
 		答：编译器编译枚举类型时会导致DEX code的增加，运行时的内存分配占用过多，比静态常态占用的内存超过两倍之多，原因是枚举编译完之后，生成一个
 		values() 数组，静态占用的内存就是对象本身的大小加上对象成员指向的其他对象大小。谷歌官方不建议使用枚举类型，如果在意内存优化这一方面。
-
+	
 	（2）view测量中，measure_spec有哪几种测量模式？
 	
 		答：测量模式是由父容器传递给子容器的，并不是对子容器的布局要求，而是由测量模式和view的layoutParameter共同测量。
 		- UNSPECIFIED:父容器对子容器没有限制，子容器想多大就多大。
 		
 		- EXACTLY:父容器对子容器设置了具体的尺寸大小，子容器应该服从这些边界，不论它要多大。（match_parent、10dp)
-
+	
 		- AT_MOST:子容器可以是声明大小的任意大小（wrap_content)
-
+	
 	（3）算法题，计算D点到各点的最短距离。
 		
 		答：最短路径算法。参考广度优先算法和深度优先算法。
-
+	
 	（4）Sqlite数据库需要插入大量数据，有什么方法可以提高执行效率？
-
+	
 		答：主要方法为显式的开启事务，把所有数据的insert操作作为一个事务操作，减少磁盘操作次数，避免频繁的进行I/O操作，因为没有显式开启事务之前，
 		每插入一条数据都会与磁盘进行读写，浪费大量时间。具体代码如下：
 		String[] column = {
-                Config.COLUMN_USERID,
-        };
-        String selection = "UserID = '" + userID + "'";
-        Cursor cursor = database.query(Config.TABLE_R_USER_QUESTION_DO_HISTORY, column, selection, null, null, null, null);
+	            Config.COLUMN_USERID,
+	    };
+	    String selection = "UserID = '" + userID + "'";
+	    Cursor cursor = database.query(Config.TABLE_R_USER_QUESTION_DO_HISTORY, column, selection, null, null, null, null);
 		if(cursor.getCount == 0){
 			//初始化表
 			int rowNum = getTotalRowTable(Config.TABLE_R_USER_QUESTION_DO_HISTORY);
 			//显式的开启事务
 			dataBase.beginTransaction();
-
+	
 			try{
 				ContentValues values = new ContentValues();
-                for (int i = 0; i < 100000; i++) {
-                    values.put(Config.COLUMN_USERID, userID);
-                    rowNum = ++rowNum;
-                    values.put(Config.COLUMN_QUESTIONNUM, rowNum + "");
-                    values.put(Config.COLUMN_ISCOLLECTED, 0);
-                    values.put(Config.COLUMN_WRONGTIMES, 0);
-                    values.put(Config.COLUMN_RIGHTTIMES, 0);
-                    database.insert(Config.TABLE_R_USER_QUESTION_DO_HISTORY, null, values);
-                }			
+	            for (int i = 0; i < 100000; i++) {
+	                values.put(Config.COLUMN_USERID, userID);
+	                rowNum = ++rowNum;
+	                values.put(Config.COLUMN_QUESTIONNUM, rowNum + "");
+	                values.put(Config.COLUMN_ISCOLLECTED, 0);
+	                values.put(Config.COLUMN_WRONGTIMES, 0);
+	                values.put(Config.COLUMN_RIGHTTIMES, 0);
+	                database.insert(Config.TABLE_R_USER_QUESTION_DO_HISTORY, null, values);
+	            }			
 				//设置事务的标志为成功
 				dataBase.setTransactionSuccessful();
 			}catch(Exception e){
@@ -138,15 +138,15 @@
 	（5）Handler、Looper、MessageQueue三者的关系。
 	
 		答：Handler负责发送Message和处理Message。
-
+	
 		   Looper是负责从消息队列（MessageQueue）中不断的调用loop方法查询Message，如果有Message则交给message的target(Handler)的
 		   dispatchMessage去处理，没有就一直等待（阻塞），每个线程都 维护着唯一的一个Looper，每个Looper都会初始化一个MessageQueue,
 		   之后进入一个无线循环一直读取MessageQueue的消息，没有消息就一直阻塞。
-
+	
 		   MessageQueue就是一个消息队列，以单链表的数据结构来存储消息列表，以队列的形式提供插入和删除操作（单链表在插入和删除操作上效率比较高），
 		   next方法是一个无限循环的方法，如果消息队列中没有消息，那么next方法会一直堵塞，有新消息的事后，next方法会返回这条消息并从链表中
 		   删除该消息。
-
+	
 		   	应用启动时会在ActivityThread的main函数中会调用Looper.prepareMainLooper()方法为主线程实例化一个Looper，然后调用Looper.loop(),
 			所以Handler在主线程中可以直接new Handler（）,构造函数不用传递Looper。
 			下面是在子线程如何初始化Handler机制:
@@ -161,7 +161,7 @@
 						
 						}
 					};
-
+	
 					Looper.loop();	//必须调用此方法开启循环机制去MessageQueue获取消息
 				}
 			}）.start();
@@ -171,11 +171,11 @@
 		答：优化内存也就是优化应用占整个系统的内存。（主要从以下几个大方面考虑：分配对象、view层级、数据优化、dex优化代码优化）
 			1、避免创建不需要的对象。对于生命周期较短的临时变量，尽量想办法规避掉每次都要去创建它，这样GC回收被强制调用机会就会更少，留给Android
 			系统进行UI渲染或者音频加载的时间就会更多，从而避免了卡顿现象。
-
+	
 			2、尽量使用一些轻量级容器存储数据，比如用SparseArray代替HashMap，因为当HashMap的负载因子达到0.75时，会进行双倍扩容，不做空间整理，
 			内存使用率低，适用于数据量较大或者内存空间相对宽裕。SparseArray避免了key的自动装箱操作（但key一定是iInteger、Long类型）、空间压缩，
 			进行矩阵压缩大大减少了存储空间，节约内存，但增、查、删速度相对较慢，适用于数据量较小的场景下。
-
+	
 			3、尽量避免使用枚举Enum而选择用静态常量，编译器编译枚举类型时会生成大量代码和对象，每个枚举变量对应一个数组，占用的内存是静态常量的两倍
 			
 			4、可以适当重写onTrimMemory回调方法，可以在这个方法内检测到系统内存是否不足，然后通过处理部分资源来释放内存，从而避免应用被系统杀死。
@@ -186,7 +186,7 @@
 			AndroidManifest 文件中为各个组件申明 android:process 属性就可以分隔为不同的进程。注意一点:在后台运行的Service绝对不能处理或者持有
 			任何UI，否则系统可能会分配双倍甚至三倍的空间来维护UI资源！！（ps:service启动的两种方式：第一种是bindService,当退出应用时service会
 			自动停止销毁，第二种是startService，即使退出应用后也会继续在后台运行）
-
+	
 			6、ListView在getView方法中尽量复用convertView，因为在getView中会频繁调用而生成一些重复的对象。
 			
 			如何避免内存溢出？（主要从三个方面：内存引用，图片处理，分配内存，释放资源）
@@ -195,7 +195,7 @@
 			3、分配足够的内存大小，不建议，可能会通过杀死其他后台程序获取可以分配的内存。
 			4、数据库、IO流用完记得关闭，广播和服务组件随着Activity的销毁而注销。
 			5、避免内部类持有外部类的引用。
-	
+
 [内存溢出和内存泄漏的概念](https://blog.csdn.net/alionsss/article/details/53966809)	
 
 [静态变量什么时候被分配和回收](http://blog.sina.com.cn/s/blog_476d58ef0102vz2n.html)	
@@ -223,7 +223,7 @@
 		答：1、（管道通信）使用Intent:Activity，Service，Receiver，ContentProvider都支持在Intent中传递Bundle数据，而bundle实现了
 		Parcelable接口，可以在进程间传输。在一个进程中启动了另一个进程的Activity，Service，Receiver，ContentProvider,可以在Bundle中附加要
 		传递的数据通过Intent发出去。
-
+	
 		优点：简单方便，可以实现任意关系的进程间的通信		缺点：局限于单向通信，只能创建在它的进程以及其有亲缘关系的进程之间，只适用于传递少量数据
 		
 		2、（共享内存）使用文件共享：
@@ -241,25 +241,24 @@
 		只适合传递消息，不能跨进程调用服务端的方法。
 		
 		优点：可以处理大量并发请求，可以夸进程调用服务端的方法。	缺点：操作繁杂，生成AIDL文件。
-
+	
 		4、（套接字）使用socket（面向网络的进程间通信方式）
 		网络的 Socket 数据传输是一种特殊的 I/O，Socket 也是一种文件描述符。Socket 也具有一个类似于打开文件的函数调用： Socket()，该函数返回一个
 		整型的Socket 描述符，随后的连接建立、数据传输等操作都是通过该 Socket 实现的。
 		
 		优点：只要有网络存在，跨越任何限制，数据量大，快速。	缺点：受网络带宽限制和延时影响。
-
+	
 	（8）Activity、Window和View之间的关系。
 		
 	[参考链接](https://www.jianshu.com/p/a533467f5af5)
-
+	
 		答：Activity像一个工匠（整个模型控制单元），Window像窗户（承载模型），View像窗花（视图显示模型）。
 		Activity的启动是通过ActivityThread的main函数调用其attach方法，最终是在performLaunchActivity方法中通过类加载器构建Activity
 		实例，然后Activity调用attach方法创建该Activity所属的Window对象并为其设置回调接口，而View是Android中的视图呈现方式，不能单独存在
 		必须依附于Window这个抽象的概念上，View是通过ViewRoot绑定到Window上，在ActivityThread中，当Activity对象被创建完毕后，会将
 		DecorVidew添加到Window中，同时会创建ViewRootImpl对象，并将ViewRootImpl对象和DecorView建立关联。
-
+	
 	（9）怎么优化布局？
-
 
 ---
 
