@@ -30,15 +30,15 @@
 * echo "# Record_R9" >> README.md  创建README.md文件
 * git add . 提交当前目录下的所有文件 
 * git add README.md 提交当前目录下的README.md文件
-* git commit -m "first commit"	提交到本地仓库 
+	 git commit -m "first commit"	提交到本地仓库 
 * git remote add origin https://github.com/github账户名/仓库名（仓库链接） 关联远程仓库
-* git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
+	 git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
 * git pull 将远程仓库的文件拉到本地仓库
 
 ### git本地仓库操作命令
 
 - **git add <文件名或者.>**（添加到git仓库)
-- **git commit -m <这次提交的变化>**	(提交到本地仓库)
+   **git commit -m <这次提交的变化>**	(提交到本地仓库)
 - **git status**  (查看仓库的状态变化)
 - **git diff**   (查看仓库的文件哪些发生变化)
 - **git log**   (显示从最近到最远的提交日志)  git log --pretty=oneline (精简输出信息)
@@ -54,7 +54,7 @@
 - **git checkout -b <分支名>**  (创建分支，并且切换到该分支）
 - **git branch <分支名>** (创建分支)
 - **git checkout <分支名>** (切换到该分支)
-- **git branch** 	(查看当前分支,当前分支前面有个*号)
+   **git branch** 	(查看当前分支,当前分支前面有个*号)
 - **git merge <分支名>** (合并某分支到当前分支）
 - **git branch -d <分支名>** (删除本地分支）
 - **git push origin  --delete <分支名>** （删除远程分支）
@@ -63,6 +63,13 @@
 - **git merge --no-ff -m "merge with no-ff" dev** (禁用merge的fast forward模式,可以看出曾合并的历史）
 - **git push origin(远程仓库名或者git地址）dev(分支名)** （推送到远程分支，如果推送失败，先用git pull抓取远程的新提交）  
 - **git checkout -b dev origin/dev** (另一台电脑在dev分支上开发，创建远程origin的dev分支到本地）
+- **合并远程分支：**
+   * 先checkout下需要合并的两个分支：
+     * **git checkout <master> **
+     * **git checkout <develop>**
+   * 然后在 **master** 分支上合并 **develop** 分支:（需要先切换到master分支:git checkout <master>)
+     * **git merge <develop>** : 如果出现refusing merge unrelated history错误时,执行 **git merge <develop>  --allow-unrelated-histories** 命令强行合并，输入完后要输入此次合并的补充信息，然后输入 **:wq**退出即可;如果出现文件冲突，要去提示的文件整理git自动标注的冲突信息，然后git add和git commit。
+   * 最后提交代码： **git push origin <master>**
 
 ### git标签命令
 
@@ -131,6 +138,8 @@
 * **failed to push some refs to**：
 
   没有先pull最新的仓库版本到本地，再次push时会提示冲突，这种情况大多数发生在共同开发或者两台不同的机器时，解决办法是先pull远程仓库到本地，然后再push。
+
+* **Git在合并时遇到unrelated history提示时无法merge**：[参考链接](https://blog.csdn.net/llllloj/article/details/52948234)
 
 
 
