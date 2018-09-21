@@ -640,11 +640,79 @@ class Client{
 
 ## 8.适配器模式
 
-
+### 
 
 ## 9.原型模式
 
+### 9.1 定义
 
+> 用原型实例指定创建对象的种类，并且通过复制这些原型创建新的对象。
+
+### 9.2 作用
+
+* 如果创建新的对象比较复杂时，可以利用原型模式简化对象的创建过程，同时也能够提高效率。
+* 可以使用深克隆保持对象的状态。
+* 原型模式提供了简化的创建结构。
+
+### 9.3 用法
+
+1. 原型类必须实现Cloneable接口：该接口表示该类能够复制且具体复制的能力。
+2. 重写clone方法：实现自己的拷贝逻辑。
+3. 有浅拷贝和深拷贝两种方式：
+   * **浅拷贝**：使用一个已知实例对新创建实例的成员变量逐个赋值。
+   * **深拷贝**：不仅要复制对象的所有非引用成员变量值，还要为引用类型的成员变量创建新的实例，并且初始化为形式参数实例值。
+
+```java
+public class PrototypeObj implements Cloneable{
+    private String member01;
+    private String member02;
+    
+    @Override
+    public PrototypeObj clone() {
+        //深拷贝
+        PrototypeObj obj = null;
+        try{
+            obj = (PrototypeObj) super.clone();
+        }catch(CloneNotSupportedException e)
+        {
+        	e.printStackTrace();    
+        }
+        //浅拷贝
+        try{
+			obj = new PrototypeObj();
+        	obj.member01 = this.member01;
+        	obj.member02 = this.member02;
+        }catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+        }
+      
+        return obj;
+    }
+}
+public class MainClass{
+     public static void main(String... arg) {
+        System.out.println("原型模式》》》》》》");
+        PrototypePattern prototypePattern = new PrototypePattern();
+        try {
+            PrototypePattern cloneObj = (PrototypePattern) prototypePattern.clone();
+
+            System.out.println("cloneMember01 = " + cloneObj.getMember01());
+            System.out.println("cloneMember02 = " + cloneObj.getMember02());
+            System.out.println("prototypePattern == cloneObj ? " + (prototypePattern == 								cloneObj));	//一定不相等，不是同一个对象，对应的内存映射地址不一样
+            System.out.println("prototypePattern.equals(cloneObj)? " + 											    (prototypePattern.equals(cloneObj)));//看equals方法
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### 9.4 使用场景
+
+* 如果创建新对象成本较大，我们可以利用已有的对象进行复制来获得。
+* 如果系统要保存对象的状态，而对象的状态变化很小，或者对象本身占内存不大的时候，也可以使用原型模式配合备忘录模式来应用。相反，如果对象的状态变化很大，或者对象占用的内存很大，那么采用状态模式会比原型模式更好。 
+* 需要避免使用分层次的工厂类来创建分层次的对象，并且类的实例对象只有一个或很少的几个组合状态，通过复制原型对象得到新实例可能比使用构造函数创建一个新实例更加方便。
 
 ## 10.策略模式
 
