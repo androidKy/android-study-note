@@ -286,15 +286,15 @@ public class SingleManager{
 
 ## 2.构建者模式
 
-#### 2.1 定义
+### 2.1 定义
 
 将一个对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
 
-#### 2.2 作用
+### 2.2 作用
 
 将构建复杂对象的过程和它的部件解耦，使得构建过程和部件的表示隔离开来。一个复杂的对象有很多大量组成的部分，例如一辆汽车，有车轮、方向盘、发动机等各种小零件，如何装配这个过程很漫长，也很复杂，为了在构建过程中对外部隐藏实现细节，就可以使用Builder模式将部件和组装过程分离。
 
-#### 2.3 用法
+### 2.3 用法
 
 ```java
 public class AlertDialog{
@@ -330,7 +330,7 @@ public class AlertDialog{
 }
 ```
 
-#### 2.4 使用场景
+### 2.4 使用场景
 
 （1）相同的方法，不同的执行顺序，产生不同的事件结果时。
 
@@ -340,15 +340,15 @@ public class AlertDialog{
 
 ## 3.***观察者模式***
 
-#### 3.1 定义
+### 3.1 定义
 
 定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新。
 
-#### 3.2 作用
+### 3.2 作用
 
 解决类与类之间有逻辑交互时存在的耦合度。
 
-#### 3.3 用法
+### 3.3 用法
 
 ```java
 //抽象类观察者
@@ -406,7 +406,7 @@ public class Test{
 }
 ```
 
-#### 3.4 使用场景
+### 3.4 使用场景
 
 * 关联行为场景，并且关联行为是可拆分的，而不是 **组合** 关系。
 
@@ -418,15 +418,15 @@ public class Test{
 
 ## 4.***代理模式***
 
-#### 4.1 定义
+### 4.1 定义
 
 给某一个对象提供一个代理对象，并由代理对象控制原对象的引用。
 
-#### 4.2 作用
+### 4.2 作用
 
 给对象增加了本地化的扩展，增加了存取操作控制。但缺点是产生多余的代理类。
 
-#### 4.3 用法
+### 4.3 用法
 
 * 角色介绍
   * 抽象对象角色：声明了目标对象和代理对象的共同接口，可以在任何使用目标对象的地方都可以使用代理对象。
@@ -478,15 +478,15 @@ public class Test{
 
 ## 5.装饰(包装)模式
 
-#### 5.1 定义
+### 5.1 定义
 
 是指在不必改变原类文件和使用继承的情况下，动态地扩展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。 
 
-#### 5.2 作用
+### 5.2 作用
 
 是继承关系的一种替代方案之一，就增加功能来说，装饰模式比生成子类更为灵活。
 
-#### 5.3 用法
+### 5.3 用法
 
 创建一个包装对象来包裹真实的对象，在不改变ComponentA类的情况下扩展功能。
 
@@ -545,7 +545,7 @@ class Client{
 }
 ```
 
-#### 5.4 使用场景
+### 5.4 使用场景
 
 （1）需要扩展一个类的功能，但不能修改该类的代码。
 
@@ -734,10 +734,78 @@ class Client{
 
 1. RecyclerView可通过设置LayoutManager实现布局高度可定制化，横、竖、瀑布流。
 2. RecyclerView不用通过手动判断convertview是否为空从而循环使用view资源。
-
+  =======
 ## 9.原型模式
 
+### 9.1 定义
 
+> 用原型实例指定创建对象的种类，并且通过复制这些原型创建新的对象。
+
+### 9.2 作用
+
+* 如果创建新的对象比较复杂时，可以利用原型模式简化对象的创建过程，同时也能够提高效率。
+* 可以使用深克隆保持对象的状态。
+* 原型模式提供了简化的创建结构。
+
+### 9.3 用法
+
+1. 原型类必须实现Cloneable接口：该接口表示该类能够复制且具体复制的能力。
+2. 重写clone方法：实现自己的拷贝逻辑。
+3. 有浅拷贝和深拷贝两种方式：
+   * **浅拷贝**：使用一个已知实例对新创建实例的成员变量逐个赋值。
+   * **深拷贝**：不仅要复制对象的所有非引用成员变量值，还要为引用类型的成员变量创建新的实例，并且初始化为形式参数实例值。
+
+```java
+public class PrototypeObj implements Cloneable{
+    private String member01;
+    private String member02;
+    
+    @Override
+    public PrototypeObj clone() {
+        //深拷贝
+        PrototypeObj obj = null;
+        try{
+            obj = (PrototypeObj) super.clone();
+        }catch(CloneNotSupportedException e)
+        {
+        	e.printStackTrace();    
+        }
+        //浅拷贝
+        try{
+			obj = new PrototypeObj();
+        	obj.member01 = this.member01;
+        	obj.member02 = this.member02;
+        }catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+        }
+      
+        return obj;
+    }
+}
+public class MainClass{
+     public static void main(String... arg) {
+        System.out.println("原型模式》》》》》》");
+        PrototypePattern prototypePattern = new PrototypePattern();
+        try {
+            PrototypePattern cloneObj = (PrototypePattern) prototypePattern.clone();
+
+            System.out.println("cloneMember01 = " + cloneObj.getMember01());
+            System.out.println("cloneMember02 = " + cloneObj.getMember02());
+            System.out.println("prototypePattern == cloneObj ? " + (prototypePattern == 								cloneObj));	//一定不相等，不是同一个对象，对应的内存映射地址不一样
+            System.out.println("prototypePattern.equals(cloneObj)? " + 											    (prototypePattern.equals(cloneObj)));//看equals方法
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### 9.4 使用场景
+
+* 如果创建新对象成本较大，我们可以利用已有的对象进行复制来获得。
+* 如果系统要保存对象的状态，而对象的状态变化很小，或者对象本身占内存不大的时候，也可以使用原型模式配合备忘录模式来应用。相反，如果对象的状态变化很大，或者对象占用的内存很大，那么采用状态模式会比原型模式更好。 
+* 需要避免使用分层次的工厂类来创建分层次的对象，并且类的实例对象只有一个或很少的几个组合状态，通过复制原型对象得到新实例可能比使用构造函数创建一个新实例更加方便。
 
 ## 10.策略模式
 

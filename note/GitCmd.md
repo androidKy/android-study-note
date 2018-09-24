@@ -63,6 +63,13 @@
 - **git merge --no-ff -m "merge with no-ff" dev** (禁用merge的fast forward模式,可以看出曾合并的历史）
 - **git push origin(远程仓库名或者git地址）dev(分支名)** （推送到远程分支，如果推送失败，先用git pull抓取远程的新提交）  
 - **git checkout -b dev origin/dev** (另一台电脑在dev分支上开发，创建远程origin的dev分支到本地）
+- **合并远程分支：**
+   * 先checkout下需要合并的两个分支：
+     * **git checkout <master> **
+     * **git checkout <develop>**
+   * 然后在 **master** 分支上合并 **develop** 分支:（需要先切换到master分支:git checkout <master>)
+     * **git merge <develop>** : 如果出现refusing merge unrelated history错误时,执行 **git merge <develop>  --allow-unrelated-histories** 命令强行合并，输入完后要输入此次合并的补充信息，然后输入 **:wq**退出即可;如果出现文件冲突，要去提示的文件整理git自动标注的冲突信息，然后git add和git commit。
+   * 最后提交代码： **git push origin <master>**
 
 ### git标签命令
 
@@ -120,17 +127,19 @@
 
 ### git error
 
-* **refusing to merge unrelated histories**：
+* **如果pull失败，refusing to merge unrelated histories**：
 
   先pull，因为两个仓库不同，发现`refusing to merge unrelated histories`，无法pull。
 
-  因为他们是两个不同的项目，要把两个不同的项目合并，git需要添加一句代码，在`git pull`，这句代码是在git 2.9.2版本发生的，最新的版本需要添加`--allow-unrelated-histories`
+  因为他们是两个不同的项目，要把两个不同的项目合并，git需要添加一句代码，在`git pull`，这句代码是在git 2.9.2版本发生的，最新的版本需要添加` --allow-unrelated-histories`
 
   假如我们的源是origin，分支是master，那么我们 需要这样写`git pull origin master ----allow-unrelated-histories`需要知道，我们的源可以是本地的路径。
 
 * **failed to push some refs to**：
 
   没有先pull最新的仓库版本到本地，再次push时会提示冲突，这种情况大多数发生在共同开发或者两台不同的机器时，解决办法是先pull远程仓库到本地，然后再push。
+
+* **Git在合并时遇到unrelated histories提示时无法merge**：[参考链接](https://blog.csdn.net/llllloj/article/details/52948234) 这是因为两个分支没有相同的commit记录联系，可以使用如下命令强行合并： **git merge <branchName> --allow-unrelated-histories** 。具体可参考上面的[git分支管理](#git分支管理)。
 
 
 
