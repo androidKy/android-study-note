@@ -44,7 +44,7 @@
 - **git log**   (显示从最近到最远的提交日志)  git log --pretty=oneline (精简输出信息)
 - **git reset --hard <版本号>**  (版本回退，回退到选择的版本号）
 - **git reflog** (查看命令历史）
-- **git checkout -- <文件名>** (撤销修改，让这个文件回到最近一次git commit或git add时的状态)
+- **git checkout --  <文件名>** (撤销修改，让这个文件回到最近一次git commit或git add时的状态)
 - **git reset HEAD <文件名>**		(撤销修改，把暂存区的修改撤销掉（unstage），重新放回工作区)
 - **git rm <文件名>**		(删除文件，把仓库的文件删除,然后必须重新commit)
 - **git checkout -- <文件名>**  (用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”）
@@ -54,7 +54,7 @@
 - **git checkout -b <分支名>**  (创建分支，并且切换到该分支）
 - **git branch <分支名>** (创建分支)
 - **git checkout <分支名>** (切换到该分支)
-- **git branch** 	(查看当前分支,当前分支前面有个*号)
+	 **git branch** 	(查看当前分支,当前分支前面有个*号)
 - **git branch -a** (查看本地分支和远程分支)
 - **git merge <分支名>** (合并某分支到当前分支）
 - **git branch -d <分支名>** (删除本地分支）
