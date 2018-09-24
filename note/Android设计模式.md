@@ -338,7 +338,7 @@ public class AlertDialog{
 
 例如Android系统源码的AlertDialog类。
 
-## 3.观察者模式
+## 3.***观察者模式***
 
 #### 3.1 定义
 
@@ -416,7 +416,7 @@ public class Test{
 
   例如：EventBus事件总线、RxJava、BroadCast等。
 
-## 4.代理模式
+## 4.***代理模式***
 
 #### 4.1 定义
 
@@ -474,6 +474,7 @@ public class Test{
 #### 4.4 使用场景
 
 * 当不能直接对目标对象直接操作引用时。
+* 实例有Android源码中的Binder夸进程通信机制和AIDL
 
 ## 5.装饰(包装)模式
 
@@ -609,6 +610,17 @@ class Client{
           return new ProductB();
       }
   }
+  
+  public static void main(Strings... args)
+  {
+      Factory factoryA = new FactoryA();
+      ProductA productA = factoryA.createProduct();
+      productA.method();
+      
+      Factory factoryB = new FactoryB();
+      ProductB productB = factoryB.createProduct();
+      productB.method();
+  }
   ```
 
 ### 6.4 使用场景
@@ -638,9 +650,90 @@ class Client{
 
 * 适用于项目比较大，需要生产多种产品。
 
-## 8.适配器模式
+## 8.***适配器模式***
 
+### 8.1 定义
 
+> 把一个类的接口变成客户端所期待的另一种接口，从而使原本因接口不匹配而无法一起工作的两个类能够在一起工作。
+
+### 8.2 作用
+
+将两个不兼容的类融合在一起，使他们能正常工作。
+
+### 8.3 用法
+
+适配模式分两种：类适配器模式和对象适配器模式。
+
+* 类适配器模式：用电源接口做例子，笔记本电脑的电源一般是5V，生活中的电源是220V。（转接口）
+
+  ~~~java
+  public interface FiveVolt{
+      public int getVolt5();
+  }
+  public class Volt220{
+      public int getVolt220(){
+          return 220;
+      }
+  }
+  
+  public class VoltAdapter extends Volt220 implements FiveVolt{
+      @Override
+      public int getVolt5(){
+          return 5;
+      }
+  }
+  
+  public class Test{
+      public static void main(String[] args)
+      {
+         	VoltAdapter adapter = new VoltAdapter();
+      	int volt5 = adapter.getVolt5();
+      	int volt220 = adapter.getVolt220(); 
+      }
+  }
+  ~~~
+
+* 对象适配器模式：
+
+  ~~~java
+  public interface FiveVolt{
+      public int getVolt5();
+  }
+  public class Volt220{
+      public int getVolt220(){
+          return 220;
+      }
+  }
+  public class VoltAdapter implements FiveVolt{
+      private Volt220 volt220;
+      
+      public VoltAdapter(Volt220 volt220){
+          this.volt220 = volt220;
+      }
+      
+      @Override
+      public int getVolt5(){
+          return 5;
+      }
+      
+      public int getVolt220(){
+          if(volt220 != null)
+              return volt220.getVolt220();
+          return 0;
+      }
+  }
+  ~~~
+
+### 8.4 使用场景
+
+* ListView和RecyclerView的adapter就是经典的对象适配器模式的优秀实例。
+* 想要建立一个可以重复使用的类，用于与彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作。
+* 需要一个统一的输出接口，而输入端的类型不可预知。
+
+### ListView和RecyclerView的比较:
+
+1. RecyclerView可通过设置LayoutManager实现布局高度可定制化，横、竖、瀑布流。
+2. RecyclerView不用通过手动判断convertview是否为空从而循环使用view资源。
 
 ## 9.原型模式
 
