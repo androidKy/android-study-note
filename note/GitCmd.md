@@ -55,6 +55,7 @@
 - **git branch <分支名>** (创建分支)
 - **git checkout <分支名>** (切换到该分支)
 - **git branch** 	(查看当前分支,当前分支前面有个*号)
+- **git branch -a** (查看本地分支和远程分支)
 - **git merge <分支名>** (合并某分支到当前分支）
 - **git branch -d <分支名>** (删除本地分支）
 - **git push origin  --delete <分支名>** （删除远程分支）
@@ -94,7 +95,7 @@
 ### 其他命令
 
 - **cat <fileName>** （查看文件内容）
-- **rm <fileName>**	（删除文件）
+	 **rm <fileName>**	（删除文件）
 - **git remote -v** (显示远程仓库更详细的信息）
 
 ### git忽略文件配置
