@@ -1,2 +1,2 @@
 # android-study-note
-thinking in android.
+thinking in android in batmobi branch.
