@@ -30,23 +30,23 @@
 * echo "# Record_R9" >> README.md  创建README.md文件
 * git add . 提交当前目录下的所有文件 
 * git add README.md 提交当前目录下的README.md文件
-* git commit -m "first commit"	提交到本地仓库 
+	 git commit -m "first commit"	提交到本地仓库 
 * git remote add origin https://github.com/github账户名/仓库名（仓库链接） 关联远程仓库
-* git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
+	 git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
 * git pull 将远程仓库的文件拉到本地仓库
 
 ### git本地仓库操作命令
 
 - **git add <文件名或者.>**（添加到git仓库)
-- **git commit -m <这次提交的变化>**	(提交到本地仓库)
+	 **git commit -m <这次提交的变化>**	(提交到本地仓库)
 - **git status**  (查看仓库的状态变化)
 - **git diff**   (查看仓库的文件哪些发生变化)
 - **git log**   (显示从最近到最远的提交日志)  git log --pretty=oneline (精简输出信息)
 - **git reset --hard <版本号>**  (版本回退，回退到选择的版本号）
 - **git reflog** (查看命令历史）
 - **git checkout --  <文件名>** (撤销修改，让这个文件回到最近一次git commit或git add时的状态)
-- **git reset HEAD <文件名>**		(撤销修改，把暂存区的修改撤销掉（unstage），重新放回工作区)
-- **git rm <文件名>**		(删除文件，把仓库的文件删除,然后必须重新commit)
+	 **git reset HEAD <文件名>**		(撤销修改，把暂存区的修改撤销掉（unstage），重新放回工作区)
+	 **git rm <文件名>**		(删除文件，把仓库的文件删除,然后必须重新commit)
 - **git checkout -- <文件名>**  (用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”）
 
 ### git分支管理
@@ -66,11 +66,11 @@
 - **git checkout -b dev origin/dev** (另一台电脑在dev分支上开发，创建远程origin的dev分支到本地）
 - **合并远程分支：**
    * 先checkout下需要合并的两个分支：
-     * **git checkout <master> **
-     * **git checkout <develop>**
-   * 然后在 **master** 分支上合并 **develop** 分支:（需要先切换到master分支:git checkout <master>)
-     * **git merge <develop>** : 如果出现refusing merge unrelated history错误时,执行 **git merge <develop>  --allow-unrelated-histories** 命令强行合并，输入完后要输入此次合并的补充信息，然后输入 **:wq**退出即可;如果出现文件冲突，要去提示的文件整理git自动标注的冲突信息，然后git add和git commit。
-   * 最后提交代码： **git push origin <master>**
+     * **git checkout \<master> **
+     * **git checkout \<develop>**
+   * 然后在 **master** 分支上合并 **develop** 分支:（需要先切换到master分支:git checkout \<master>)
+     * **git merge \<develop>** : 如果出现refusing merge unrelated history错误时,执行 **git merge \<develop>  --allow-unrelated-histories** 命令强行合并，输入完后要输入此次合并的补充信息，然后输入 **:wq**退出即可;如果出现文件冲突，要去提示的文件整理git自动标注的冲突信息，然后git add和git commit。
+   * 最后提交代码： **git push origin \<master>**
 
 ### git标签命令
 
@@ -94,8 +94,8 @@
 
 ### 其他命令
 
-- **cat <fileName>** （查看文件内容）
-	 **rm <fileName>**	（删除文件）
+- **cat \<fileName>** （查看文件内容）
+	 **rm \<fileName>**	（删除文件）
 - **git remote -v** (显示远程仓库更详细的信息）
 
 ### git忽略文件配置
