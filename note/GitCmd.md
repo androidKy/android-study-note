@@ -54,16 +54,19 @@
 - **git checkout -b <分支名>**  (创建分支，并且切换到该分支）
 - **git branch <分支名>** (创建分支)
 - **git checkout <分支名>** (切换到该分支)
-	 **git branch** 	(查看当前分支,当前分支前面有个*号)
+   **git branch** 	(查看当前分支,当前分支前面有个*号)
 - **git branch -a** (查看本地分支和远程分支)
 - **git merge <分支名>** (合并某分支到当前分支）
 - **git branch -d <分支名>** (删除本地分支）
-- **git push origin  --delete <分支名>** （删除远程分支）
 - **git branch -D <分支名>** (丢弃一个没有被合并过的分支，强行删除）
 - **git log --graph --pretty=oneline --abbrev-commit** (查看分支的合并情况）
 - **git merge --no-ff -m "merge with no-ff" dev** (禁用merge的fast forward模式,可以看出曾合并的历史）
 - **git push origin(远程仓库名或者git地址）dev(分支名)** （推送到远程分支，如果推送失败，先用git pull抓取远程的新提交）  
 - **git checkout -b dev origin/dev** (另一台电脑在dev分支上开发，创建远程origin的dev分支到本地）
+- **git push origin  --delete <分支名>** (删除远程分支)
+- **创建远程分支：**
+   * 先在本地主分支下创建分支：**git branch \<dev> ** 
+   * 然后在master分支推送dev分支到远程仓库：**git push origin \<dev>**
 - **合并远程分支：**
    * 先checkout下需要合并的两个分支：
      * **git checkout \<master> **
