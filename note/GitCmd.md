@@ -61,7 +61,6 @@
 - **git branch -D <分支名>** (丢弃一个没有被合并过的分支，强行删除）
 - **git log --graph --pretty=oneline --abbrev-commit** (查看分支的合并情况）
 - **git merge --no-ff -m "merge with no-ff" dev** (禁用merge的fast forward模式,可以看出曾合并的历史）
-- **git push origin(远程仓库名或者git地址）dev(分支名)** （推送到远程分支，如果推送失败，先用git pull抓取远程的新提交）  
 - **git checkout -b dev origin/dev** (另一台电脑在dev分支上开发，创建远程origin的dev分支到本地）
 - **git push origin  --delete <分支名>** (删除远程分支)
 - **创建远程分支：**
