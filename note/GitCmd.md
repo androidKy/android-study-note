@@ -15,7 +15,6 @@
 * 使用gitbash生成新的ssh key
 
 * **ssh-keygen -t rsa -C "youremail@example.com"** (第一步，需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥,第二部，登陆GitHub，打开“Account settings”，“SSH Keys”页面，然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容）
-	
 ### Git基本操作
 
 1、从远程仓库克隆到本地仓库(cd切换到要存放git项目的目录)
@@ -30,39 +29,43 @@
 * echo "# Record_R9" >> README.md  创建README.md文件
 * git add . 提交当前目录下的所有文件 
 * git add README.md 提交当前目录下的README.md文件
-	 git commit -m "first commit"	提交到本地仓库 
+	 git commit -m "first commit"	提交到本地仓库  
 * git remote add origin https://github.com/github账户名/仓库名（仓库链接） 关联远程仓库
 	 git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
 * git pull 将远程仓库的文件拉到本地仓库
 
 ### git本地仓库操作命令
 
-- **git add <文件名或者.>**（添加到git仓库)
-	 **git commit -m <这次提交的变化>**	(提交到本地仓库)
-- **git status**  (查看仓库的状态变化)
-- **git diff**   (查看仓库的文件哪些发生变化)
-- **git log**   (显示从最近到最远的提交日志)  git log --pretty=oneline (精简输出信息)
-- **git reset --hard <版本号>**  (版本回退，回退到选择的版本号）
-- **git reflog** (查看命令历史）
-- **git checkout --  <文件名>** (撤销修改，让这个文件回到最近一次git commit或git add时的状态)
-	 **git reset HEAD <文件名>**		(撤销修改，把暂存区的修改撤销掉（unstage），重新放回工作区)
-	 **git rm <文件名>**		(删除文件，把仓库的文件删除,然后必须重新commit)
-- **git checkout -- <文件名>**  (用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”）
+| git命令                         | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| git add . 或者 git add <文件名> | 添加已修改的文件到本地仓库的stage(暂存区)，等待commit和push。 |
+| git commit -m "msg"             | 提交刚add的文件到本地仓库，msg表示需要说明的提交详情。       |
+| git status                      | 查看本地仓库的状态。                                         |
+| git diff                        | 查看本地仓库的文件变化。                                     |
+| git log                         | 显示从最近到最远的提交日志。                                 |
+| git log --pretty=oneline        | 精简显示的提交日志信息。                                     |
+| git reset HEAD <文件名>         | 撤销修改，把暂存区（stage)的修改撤销掉（unstage），重新放回工作区。 |
+| git checkout --<文件名>         | 撤销修改，让这个文件回到最近的一次commit或add时的状态        |
+| git rm <文件名>                 | 删除本地仓库的文件，必须重新commit。然后会删除远程仓库的文件。 |
+| git rm --cached <文件名>        | 删除的是本地工作区的文件，并不会删除本地仓库的文件。         |
 
 ### git分支管理
 
-- **git checkout -b <分支名>**  (创建分支，并且切换到该分支）
-- **git branch <分支名>** (创建分支)
-- **git checkout <分支名>** (切换到该分支)
-   **git branch** 	(查看当前分支,当前分支前面有个*号)
-- **git branch -a** (查看本地分支和远程分支)
-- **git merge <分支名>** (合并某分支到当前分支）
-- **git branch -d <分支名>** (删除本地分支）
-- **git branch -D <分支名>** (丢弃一个没有被合并过的分支，强行删除）
-- **git log --graph --pretty=oneline --abbrev-commit** (查看分支的合并情况）
-- **git merge --no-ff -m "merge with no-ff" dev** (禁用merge的fast forward模式,可以看出曾合并的历史）
-- **git checkout -b dev origin/dev** (另一台电脑在dev分支上开发，创建远程origin的dev分支到本地）
-- **git push origin  --delete <分支名>** (删除远程分支)
+| git命令                                          | 说明                             |
+| ------------------------------------------------ | -------------------------------- |
+| git checkout -b <分支名>                         | 创建本地分支并且切换到该分支     |
+| git checkout -b <分支名> origin/<分支名>         | 拉去远程分支到本地分支           |
+| git branch <分支名>                              | 创建本地分支但不会切换到该分支   |
+| git checkout <分支名>                            | 切换本地分支                     |
+| git branch                                       | 查看本地分支                     |
+| git branch -a                                    | 查看本地分支和远程分支           |
+| git branch -r                                    | 查看远程分支                     |
+| git log --graph --pretty=oneline --abbrev-commit | 查看分支的合并情况               |
+| git branch -d <分支名>                           | 删除本地分支                     |
+| git branch -D <分支名>                           | 强行删除本地分支（指没有被合并过 |
+| git merge <分支名>                               | 本地合并分支到当前分支           |
+| git push origin -delete <分支名>                 | 删除远程分支                     |
+
 - **创建远程分支：**
    * 先在本地主分支下创建分支：**git branch \<dev> ** 
    * 然后在master分支推送dev分支到远程仓库：**git push origin \<dev>**
