@@ -127,7 +127,7 @@
 
 * 不要误解了 .gitignore 文件的用途，该文件只能作用于 Untracked Files，也就是那些从来没有被 Git 记录过的文件（自添加以后，从未 add 及 commit 过的文件）。 如果文件曾经被 Git 记录过，那么.gitignore 就对它们完全无效。 解决方法如下：
 
-  * git rm -r --cached .
+  * git rm -r --cached .  或者 git rm -r --cached 文件路径/<文件名>
   * git add .
   * git commit -m "update msg"
 
