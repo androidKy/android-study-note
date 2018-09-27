@@ -149,7 +149,9 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
 >  這个方法很少调用，只有在View需要重新画的时候才需要重写onDraw(Canvas canvas)方法。
 
-## 自定义View和组件
+## 自定义View
+
+[参考链接](https://www.jianshu.com/p/146e5cec4863)
 
 >
 
@@ -437,28 +439,89 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
                           }
                       	break;
                       case MotionEvent.ACTION_DOWN:
-                          
+                           if (event.getSource() == InputDevice.SOURCE_TOUCHSCREEN) {
+                          	mPrivateFlags3 |= PFLAG3_FINGER_DOWN;
+                     		 }
+                          //判断是否正在长按的标志量
+                      	mHasPerformedLongPress = false;
+  
+                      	if (!clickable) {
+                          	checkForLongClick(0, x, y);
+                          	break;
+                     		 }
+  						//在触摸事件期间执行与按钮相关的操作
+                      	if (performButtonActionOnTouchDown(event)) {
+                          	break;
+                      	}
+  
+                      // Walk up the hierarchy to determine if we're inside a 							scrolling container.
+                          //确定是否在滚动容器内
+                      	boolean isInScrollingContainer = isInScrollingContainer();
+  
+                      // For views inside a scrolling container, delay the pressed 						feedback for a short period in case this is a scroll.
+                      	if (isInScrollingContainer) {
+                          	mPrivateFlags |= PFLAG_PREPRESSED;
+                          	if (mPendingCheckForTap == null) {
+                              	mPendingCheckForTap = new CheckForTap();
+                          	}
+                          	mPendingCheckForTap.x = event.getX();
+                          	mPendingCheckForTap.y = event.getY();
+                          	postDelayed(mPendingCheckForTap, 															ViewConfiguration.getTapTimeout());
+                      	} else {
+                          // Not inside a scrolling container, so show the feedback 									right away
+                              //不在滚动容器内，直接回调结果。
+                          	setPressed(true, x, y);
+                          	checkForLongClick(0, x, y);	
+                      	}
+                          break;
+                      case MotionEvent.ACTION_MOVE:
+                             if (clickable) {
+                          	drawableHotspotChanged(x, y);
+                      	   }
+  
+                      	// Be lenient about moving outside of buttons
+                          // 手指离开view的范围
+                      	if (!pointInView(x, y, mTouchSlop)) {
+                          	// Outside button
+                          	// Remove any future long press/tap checks
+                         	 	removeTapCallback();
+                          	removeLongPressCallback();
+                          	if ((mPrivateFlags & PFLAG_PRESSED) != 0) {
+                              	setPressed(false);
+                          	}
+                          	mPrivateFlags3 &= ~PFLAG3_FINGER_DOWN;
+                      	}
+                          break;
+                      case MotionEvent.ACTION_CANCEL:
+                          if (clickable) {
+                          	setPressed(false);
+                     		}
+                      	removeTapCallback();
+                     	 	removeLongPressCallback();
+                      	mInContextButtonPress = false;
+                      	mHasPerformedLongPress = false;
+                      	mIgnoreNextUpEvent = false;
+                      	mPrivateFlags3 &= ~PFLAG3_FINGER_DOWN;
                           break;
               }
       }
   ~~~
 
+![](https://upload-images.jianshu.io/upload_images/944365-f8fda76bbdad7b96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/590/format/webp)
 
 ### 3.工作流程
 
-
+![工作流程图](https://upload-images.jianshu.io/upload_images/944365-aea821bbb613c195.png?imageMogr2/auto-orient/)
 
 ### 4.核心方法
 
-* dispatchTouchEvent
-* onTouchEvent
-* onInterceptTouchEvent
+![](https://upload-images.jianshu.io/upload_images/944365-faaf73d0f3eb870f.png?imageMogr2/auto-orient/)
 
-### 5.常见的事件分发场景
+### 5.总结 
 
-### 6.其他事件分发
+没有重写核心方法也就是默认的事件分发总是先从Activity—>ViewGroup—>View,然后从View—>ViewGroup—>
 
-### 7.总结 
+Activity。
 
 ## 消息通信机制原理
 
