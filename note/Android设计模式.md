@@ -734,7 +734,9 @@ class Client{
 
 1. RecyclerView可通过设置LayoutManager实现布局高度可定制化，横、竖、瀑布流。
 2. RecyclerView不用通过手动判断convertview是否为空从而循环使用view资源。
-  =======
+3. ListView可以设置setOnItemListener监听item选项的点击事件，RecyclerView没有，需要自己手动添加。
+4. ListView需要手动添加Header和footer，RecyclerView可以根据getViewType方法返回的值判断item选项类型
+
 ## 9.原型模式
 
 ### 9.1 定义
