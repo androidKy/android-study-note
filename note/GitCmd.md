@@ -33,6 +33,7 @@
 * git remote add origin https://github.com/github账户名/仓库名（仓库链接） 关联远程仓库
 	 git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
 * git pull 将远程仓库的文件拉到本地仓库
+* git push origin <分支名> -force 强制让本地的commit覆盖远程的commit，当本地的commit和仓库的commit不同时
 
 ### git本地仓库操作命令
 
@@ -43,11 +44,28 @@
 | git status                      | 查看本地仓库的状态。                                         |
 | git diff                        | 查看本地仓库的文件变化。                                     |
 | git log                         | 显示从最近到最远的提交日志。                                 |
+| git log -p                      | 查看详细的历史                                               |
+| git log --stat                  | 查看简要统计                                                 |
 | git log --pretty=oneline        | 精简显示的提交日志信息。                                     |
 | git reset HEAD <文件名>         | 撤销修改，把暂存区（stage)的修改撤销掉（unstage），重新放回工作区。 |
 | git checkout --<文件名>         | 撤销修改，让这个文件回到最近的一次commit或add时的状态        |
 | git rm <文件名>                 | 删除本地仓库的文件，必须重新commit。然后会删除远程仓库的文件。 |
 | git rm --cached <文件名>        | 删除的是本地工作区的文件，并不会删除本地仓库的文件。         |
+
+### git高级命令
+
+| git命令                                                      | 说明                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------ |
+| git commit --amend                                           | 修复当前提交的错误，生成一条新的commit替换当前的commit |
+| git rebase -i \<commitId>/HEAD^<br />在编辑界面指定需要操作的commit和操作类型<br/>git rebase --continue | 修改写错的commit                                       |
+| git reset --hard \<commitId>                                 | 撤销最新的提交，会撤销此次commit的修改内容             |
+| git rebase -i \<commitId>/HEAD^<br />删除想撤销的commit<br />git rebase --continue | 撤销过往的提交                                         |
+| 出错内容在私有branch:本地内容修正后，git push origin \<branch> -f 强制push<br />出错内容在master: git revert \<commitId>/HEAD^ | 撤销已经push的commit                                   |
+| git reset --hard \<commitId>/<HEAD^> : 重置位置的同时，清空工作目录的改动<br />git reset --soft \<commitId>/<HEAD^>:重置位置的同时，保留工作目录和暂存区的内容，并把重置HEAD的位置所导致的新的文件差异放进暂存区。<br />git reset --mixed \<commitId>/<HEAD^>:重置位置的同时，保留工作目录的内容并清空暂存区。 | 重置HEAD以及它所指向的branch的位置                     |
+| git stash ：临时存放工作目录的改动，只作用于被track的文件<br />git stash -u : 作用于所有文件<br />git stash pop : 恢复之前的存放内容 | 中途打包                                               |
+| git reflog : 查看HEAD的移动历史<br />git checkout \<commitId> ：检出指定的commit<br />git checkout -b \<branch> : 恢复刚误删的分支 | 恢复刚误删除的分支                                     |
+
+>  注：不再被引用直接或间接指向的 `commit`s 会在一定时间后被 Git 回收，所以使用 `reflog`来找回删除的 `branch` 的操作一定要及时，不然有可能会由于 `commit` 被回收而再也找不回来，master
 
 ### git分支管理
 
