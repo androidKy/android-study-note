@@ -65,7 +65,7 @@
 | git stash ：临时存放工作目录的改动，只作用于被track的文件<br />git stash -u : 作用于所有文件<br />git stash pop : 恢复之前的存放内容 | 中途打包                                               |
 | git reflog : 查看HEAD的移动历史<br />git checkout \<commitId> ：检出指定的commit<br />git checkout -b \<branch> : 恢复刚误删的分支 | 恢复刚误删除的分支                                     |
 
->  注：不再被引用直接或间接指向的 `commit`s 会在一定时间后被 Git 回收，所以使用 `reflog`来找回删除的 `branch` 的操作一定要及时，不然有可能会由于 `commit` 被回收而再也找不回来，master
+>  注：不再被引用直接或间接指向的 `commit`s 会在一定时间后被 Git 回收，所以使用 `reflog`来找回删除的 `branch` 的操作一定要及时，不然有可能会由于 `commit` 被回收而再也找不回来，master.
 
 ### git分支管理
 
