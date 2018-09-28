@@ -37,20 +37,22 @@
 
 ### git本地仓库操作命令
 
-| git命令                         | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ |
-| git add . 或者 git add <文件名> | 添加已修改的文件到本地仓库的stage(暂存区)，等待commit和push。 |
-| git commit -m "msg"             | 提交刚add的文件到本地仓库，msg表示需要说明的提交详情。       |
-| git status                      | 查看本地仓库的状态。                                         |
-| git diff                        | 查看本地仓库的文件变化。                                     |
-| git log                         | 显示从最近到最远的提交日志。                                 |
-| git log -p                      | 查看详细的历史                                               |
-| git log --stat                  | 查看简要统计                                                 |
-| git log --pretty=oneline        | 精简显示的提交日志信息。                                     |
-| git reset HEAD <文件名>         | 撤销修改，把暂存区（stage)的修改撤销掉（unstage），重新放回工作区。 |
-| git checkout --<文件名>         | 撤销修改，让这个文件回到最近的一次commit或add时的状态        |
-| git rm <文件名>                 | 删除本地仓库的文件，必须重新commit。然后会删除远程仓库的文件。 |
-| git rm --cached <文件名>        | 删除的是本地工作区的文件，并不会删除本地仓库的文件。         |
+| git命令                               | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| git add . 或者 git add <文件名>       | 添加已修改的文件到本地仓库的stage(暂存区)，等待commit和push。 |
+| git commit -m "msg"                   | 提交刚add的文件到本地仓库，msg表示需要说明的提交详情。       |
+| git status                            | 查看本地仓库的状态。                                         |
+| git diff                              | 查看本地仓库的文件变化。                                     |
+| git diff \<master> \<branch>          | 查看两个分支的不同                                           |
+| git diff \<master> \<branch> <文件名> | 查看两个分支的文件的变化                                     |
+| git log                               | 显示从最近到最远的提交日志。                                 |
+| git log -p                            | 查看详细的历史                                               |
+| git log --stat                        | 查看简要统计                                                 |
+| git log --pretty=oneline              | 精简显示的提交日志信息。                                     |
+| git reset HEAD <文件名>               | 撤销修改，把暂存区（stage)的修改撤销掉（unstage），重新放回工作区。 |
+| git checkout --<文件名>               | 撤销修改，让这个文件回到最近的一次commit或add时的状态        |
+| git rm <文件名>                       | 删除本地仓库的文件，必须重新commit。然后会删除远程仓库的文件。 |
+| git rm --cached <文件名>              | 删除的是本地工作区的文件，并不会删除本地仓库的文件。         |
 
 ### git高级命令
 
@@ -65,7 +67,7 @@
 | git stash ：临时存放工作目录的改动，只作用于被track的文件<br />git stash -u : 作用于所有文件<br />git stash pop : 恢复之前的存放内容 | 中途打包                                               |
 | git reflog : 查看HEAD的移动历史<br />git checkout \<commitId> ：检出指定的commit<br />git checkout -b \<branch> : 恢复刚误删的分支 | 恢复刚误删除的分支                                     |
 
->  注：不再被引用直接或间接指向的 `commit`s 会在一定时间后被 Git 回收，所以使用 `reflog`来找回删除的 `branch` 的操作一定要及时，不然有可能会由于 `commit` 被回收而再也找不回来，master.
+>  注：不再被引用直接或间接指向的 `commit`s 会在一定时间后被 Git 回收，所以使用 `reflog`来找回删除的 `branch` 的操作一定要及时，不然有可能会由于 `commit` 被回收而再也找不回来。
 
 ### git分支管理
 
