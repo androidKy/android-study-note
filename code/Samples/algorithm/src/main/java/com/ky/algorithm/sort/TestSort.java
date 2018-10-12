@@ -19,7 +19,7 @@ public class TestSort {
     private static int SORT_TYPE = SELECTION_SORT;
 
     public static void main(String[] args) {
-        
+
         for (int i = 1; i < 5; i++) {
             System.out.println("");
             System.out.println("排序前：");
@@ -57,6 +57,7 @@ public class TestSort {
             case QUICK_SORT:
                 System.out.print("快速排序");
                 quickSort(0, data.length - 1);
+                //quickSort(data, 0, data.length - 1);
                 break;
         }
     }
@@ -127,26 +128,26 @@ public class TestSort {
 
     /**
      * 快速排序,二分法。不稳定
+     * 平均时间复杂度为O(NlogN)
      * 注：必须是右边先开始找，如果从左边先开始找，当右边找不到小于基准数的时候，坐标与
      * 左边相等，则会置换基准数，而此时坐标上的数比基准数大。
      */
     private static void quickSort(int head, int last) {
+        
         if (head > last) return;
         int i = head;
         int j = last;
         int key = data[head];
         while (i != j) {
+            //退出while循环，表示已找到比基准数key小的数
             while (data[j] >= key && i < j) {
-              /*  int temp = data[head];
-                data[head] = data[last];
-                data[last] = temp;*/
                 j--;
             }
-            //退出while循环，表示已找到比基准数key小的数
+            //退出while循环，表示已找到比基准数key大的数
             while (data[i] <= key && i < j) {
                 i++;
             }
-            //退出while循环，表示已找到比基准数key大的数
+
             if (i < j) {
                 int temp = data[i];
                 data[i] = data[j];
