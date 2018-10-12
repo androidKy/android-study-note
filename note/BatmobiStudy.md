@@ -2,12 +2,29 @@
 
 ## JS调试
 
-* 电脑端浏览器调试：快捷键F12进入开发者模式调试。
-* 手机端浏览器调试：把手机通过usb线连接到电脑，通过电脑端的Google浏览器调试。
-  * 手机先用usb连接电脑，并打开开发者模式，允许电脑进行调试。
-  * 打开电脑端Google浏览器，输入 **chrome://inspect/#devices** ，选中左侧菜单栏的 **Devices** 选项。
-  * 在手机端浏览器打开需要调试的网址，然后在Google浏览器可以看到正在连接的设备和显示的浏览器。
-  * 最后点击inspect打开调试。
+* **电脑端浏览器调试**：快捷键F12进入开发者模式调试。
+
+* **远程调试网页**：把手机通过usb线连接到电脑，通过电脑端的Google浏览器调试。
+
+  1. 手机先用usb连接电脑，并打开开发者模式，允许电脑进行调试。
+  2. 打开电脑端Google浏览器，输入 **chrome://inspect/#devices** ，选中左侧菜单栏的 **Devices** 选项。
+  3. 在手机端浏览器打开需要调试的网址，然后在Google浏览器可以看到正在连接的设备和显示的浏览器。
+  4. 最后点击inspect打开调试。
+
+* **远程调试WebView**：把手机通过usb线连接到电脑，通过电脑端的Google浏览器调试。
+
+  1. 手机先用usb连接电脑，并打开开发者模式，允许电脑进行调试。
+
+  2. 在您的原生 Android 应用中启用 WebView 调试；
+
+     ~~~java
+     //在应用中启用WebView调试
+     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+         WebView.setWebContentsDebuggingEnabled(true);
+     }
+     ~~~
+
+  3. 然后调试webView与通过远程调试调试网页相同
 
 ## Charles抓包测试
 
@@ -89,7 +106,7 @@
      **-keep public class com.batmobi.ky.ClassName{**
 
      	**public \<methods\>;**
-	
+		
      	**public \<fields\>;**
 
      **}**
@@ -99,9 +116,9 @@
      **-keep public class com.batmobi.ky.bean.\*\*{**
 
      	**public void set\*(\*\*\*);**
-	
+		
      	**public \*\*\* get*() ;**
-	
+		
      	**public \*\*\* is\*();**
 
      **}**

@@ -9,8 +9,8 @@ package com.ky.algorithm.sort;
 public class TestSort {
     private static final String TAG = "TestSort";
     //时间复杂度大->小:4-3-2-1
-    private static final int INSERTION_SORT = 4;    //
-    private static final int SELECTION_SORT = 3;    //时间复杂度为O(N2)
+    private static final int INSERTION_SORT = 4;    //时间复杂度为O(N^2)，空间复杂度是O(1)
+    private static final int SELECTION_SORT = 3;    //时间复杂度为O(N^2)
     private static final int BUBBLE_SORT = 2;   //
     private static final int QUICK_SORT = 1;    //平均时间复杂度为O(NlogN)
 
@@ -19,7 +19,7 @@ public class TestSort {
     private static int SORT_TYPE = SELECTION_SORT;
 
     public static void main(String[] args) {
-
+        
         for (int i = 1; i < 5; i++) {
             System.out.println("");
             System.out.println("排序前：");
@@ -63,10 +63,11 @@ public class TestSort {
 
     /**
      * 插入排序：稳定
+     * 时间复杂度为O(N^2)，空间复杂度是O(1)
      */
     private static void insertionSort() {
         for (int i = 0; i < data.length; i++) { //外部循环控制待比较的数值
-            for (int j = 0; j < i; j++) {   //内部循环比较数值确定其最终位置
+            for (int j = 0; j < data.length; j++) {   //内部循环比较数值确定其最终位置
                 if (data[i] < data[j]) {
                     int temp = data[i];
                     data[i] = data[j];
@@ -78,6 +79,7 @@ public class TestSort {
 
     /**
      * 选择排序：非稳定，比如5，4，5，2 -> 2，4，5，5把第一个5排在了后面。
+     * 时间复杂度为O(N^2)，空间复杂度是O(1)
      */
     private static void selectionSort() {
         for (int i = 0; i < data.length - 1; i++) {  //做第i趟排序
