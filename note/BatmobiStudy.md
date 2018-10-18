@@ -106,7 +106,7 @@
      **-keep public class com.batmobi.ky.ClassName{**
 
      	**public \<methods\>;**
-		
+			
      	**public \<fields\>;**
 
      **}**
@@ -116,9 +116,9 @@
      **-keep public class com.batmobi.ky.bean.\*\*{**
 
      	**public void set\*(\*\*\*);**
-		
+			
      	**public \*\*\* get*() ;**
-		
+			
      	**public \*\*\* is\*();**
 
      **}**
@@ -208,3 +208,11 @@ public JSONObject reflectObj(Object object) throws Exception{
 ## Android备份和还原
 
 > 详情可参考本人[GitHub](https://github.com/androidKy/BackupProject)
+
+## 其他
+
+### adb截图命令
+
+1. adb shell screencap -p /sdcard/screenName.png
+2. adb pull /sdcard/screenName.png 
+3. adb shell rm /sdcard/screenName.png

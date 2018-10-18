@@ -133,7 +133,7 @@ public class TestSort {
      * 左边相等，则会置换基准数，而此时坐标上的数比基准数大。
      */
     private static void quickSort(int head, int last) {
-        
+
         if (head > last) return;
         int i = head;
         int j = last;
