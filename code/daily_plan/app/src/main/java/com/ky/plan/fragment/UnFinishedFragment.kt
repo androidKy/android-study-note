@@ -5,13 +5,12 @@ import com.ky.plan.BaseFragment
 import com.ky.plan.R
 
 /**
- * description:
- * author: kyXiao
- * date: 2018/11/7
+ * Created by kyXiao
+ * 2018/11/7.
  */
-class FinishedFragment : BaseFragment() {
+class UnFinishedFragment : BaseFragment(){
     override fun getContentViewId(): Int {
-        return R.layout.fragment_finished_layout
+        return R.layout.fragment_unfinished_layout
     }
 
     override fun initView(view: View) {

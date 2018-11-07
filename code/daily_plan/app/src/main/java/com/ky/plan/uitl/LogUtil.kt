@@ -12,11 +12,11 @@ class LogUtil {
     private constructor()
 
     companion object {
-        private val LOG_TAG = "ky"
+        private val LOG_TAG = "ky_plan"
         private var DEBUG = true
 
         public fun printI(tag: String, message: String) {
-            printI(tag, message, null)
+            printI(LOG_TAG, message, null)
         }
 
         public fun printI(tag: String, message: String, exception: Throwable?) {

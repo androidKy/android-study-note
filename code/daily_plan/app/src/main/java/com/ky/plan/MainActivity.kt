@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity
 import android.util.ArrayMap
 import android.view.Menu
 import android.view.MenuItem
+import com.ky.plan.fragment.FinishedFragment
 import com.ky.plan.fragment.PlanFragment
+import com.ky.plan.fragment.UnFinishedFragment
 import com.ky.plan.fragment.WorkedFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -41,6 +43,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun initFragmentList() {
         mFragments[R.id.nav_plan] = PlanFragment()
         mFragments[R.id.nav_worked] = WorkedFragment()
+        mFragments[R.id.nav_finished] = FinishedFragment()
+        mFragments[R.id.nav_unfinished] = UnFinishedFragment()
 
         val transaction = supportFragmentManager.beginTransaction()
 
@@ -79,27 +83,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         showFragment(item.itemId, mFragments)
-        when (item.itemId) {
-            R.id.nav_plan -> {
-                // Handle the camera action
+        /* when (item.itemId) {
+             R.id.nav_plan -> {
+                 // Handle the camera action
 
-            }
-            R.id.nav_worked -> {
+             }
+             R.id.nav_worked -> {
 
-            }
-            R.id.nav_finished -> {
+             }
+             R.id.nav_finished -> {
 
-            }
-            R.id.nav_unfinished -> {
+             }
+             R.id.nav_unfinished -> {
 
-            }
-            R.id.nav_blog -> {
+             }
+             R.id.nav_blog -> {
 
-            }
-            R.id.nav_github -> {
+             }
+             R.id.nav_github -> {
 
-            }
-        }
+             }
+         }*/
 
         drawer_layout.closeDrawer(GravityCompat.START)
 
@@ -116,12 +120,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val transaction = supportFragmentManager.beginTransaction()
 
-          for (mapFragment in fragments) {
-              if (mapFragment.key != fragmentId) {
-                  transaction.hide(mapFragment.value)
-              } else transaction.show(mapFragment.value)
-          }
-       // transaction.replace(R.id.fl_container, fragments.valueAt(fragments.indexOfKey(mCurrentFragmentId)))
+        for (mapFragment in fragments) {
+            if (mapFragment.key != fragmentId) {
+                transaction.hide(mapFragment.value)
+            } else {
+                transaction.show(mapFragment.value)
+                //(mapFragment.value as BaseFragment).loadData()
+            }
+        }
+        // transaction.replace(R.id.fl_container, fragments.valueAt(fragments.indexOfKey(mCurrentFragmentId)))
         transaction.commit()
     }
 }

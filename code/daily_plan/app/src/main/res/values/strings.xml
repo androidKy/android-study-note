@@ -13,4 +13,6 @@
     <string name="personal_blog">blog</string>
     <string name="personal_github">github</string>
     <string name="personal">personal</string>
+    <string name="tv_startTime">start-time:</string>
+    <string name="tv_timeLength">time-length:</string>
 </resources>
