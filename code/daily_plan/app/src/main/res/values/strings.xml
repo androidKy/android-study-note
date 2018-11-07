@@ -2,8 +2,15 @@
     <string name="app_name">daily_plan</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">13286810620@163.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="nav_header_title">ky</string>
+    <string name="personal_plan">plan</string>
+    <string name="personal_worked">worked</string>
+    <string name="personal_finished">finished</string>
+    <string name="personal_unfinished">unfinished</string>
+    <string name="personal_blog">blog</string>
+    <string name="personal_github">github</string>
+    <string name="personal">personal</string>
 </resources>
