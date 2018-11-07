@@ -57,6 +57,47 @@
    * 修改发送的请求参数：点击链接—Edit Request—text。
    * 修改完成后点击 execute。
 
+7. 如何对Https进行抓包？
+
+   1. 为手机设置代理，操作步骤如上面第4所示。
+
+   2. 设置代理成功后，打开手机浏览器输入 **chls.pro/ssl** 下载证书并进行安装。（注：这必须是设置代理成功后才能安装证书。）
+
+   3. 电脑端的Charles的根证书安装，**help** -> **SSL Proxying** -> **Install Charles Root Certificate** 。
+
+   4. 设置访问域名和端口。**Proxy** -> **SSL Proxying Settings** -> **SSL Proxying**。
+
+   5. 如果是Android 7.0以上的机子，以上配置不会生效，需要在代码进行证书配置。
+
+   6. 导出电脑端的Charles的证书，命名为**charles_certificate.pem**。**htlp** -> **SSL Proxyinig** -> **Save Charles Root Certificate**。
+
+   7. 在项目的res目录下新增一个文件夹，命名xml，并且新建一个xml文件，命名为 **network_security_config.xml** ，名字可以随便命名，对应即可。
+
+   8. 把电脑端导出的Charles证书放在res/raw目录下，如果没有raw目录需要新建。
+
+   9. network_security_config.xml添加以下内容:
+
+      ~~~xml
+      <?xml version="1.0" encoding="utf-8"?>
+      <network-security-config>
+          <domain-config>
+              <!--可以添加多个域名 -->
+              <domain includeSubdomains="true">
+                  www.baidu.com
+              </domain>
+              <domain includeSubdomains="true">
+                  www.youtube.com
+              </domain>
+              <!-- 可以添加多个Charles证书 -->
+              <trust-anchors>
+                  <certificates src="@raw/charles_certificate" />
+                  <certificates src="@raw/charles_certificate2" />
+              </trust-anchors>
+          </domain-config>
+      </network-security-config>
+      ~~~
+
+
 ## FTP文件上传和下载
 
 > 必须先通过账号和密码连接上FTP才能进行文件上传和下载。
