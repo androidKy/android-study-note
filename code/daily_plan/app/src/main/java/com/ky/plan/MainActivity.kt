@@ -14,14 +14,18 @@ import com.ky.plan.fragment.FinishedFragment
 import com.ky.plan.fragment.PlanFragment
 import com.ky.plan.fragment.UnFinishedFragment
 import com.ky.plan.fragment.WorkedFragment
+import com.ky.plan.uitl.LogUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private val TAG = "MainActivity"
     private val mFragments = ArrayMap<Int, Fragment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        LogUtil.printI(TAG, "onCreate")
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
@@ -38,6 +42,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         initFragmentList()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LogUtil.printI(TAG, "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        LogUtil.printI(TAG, "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtil.printI(TAG, "onDestroy")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        LogUtil.printI(TAG, "onRestart")
     }
 
     private fun initFragmentList() {

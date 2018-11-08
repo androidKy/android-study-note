@@ -15,4 +15,12 @@
     <string name="personal">personal</string>
     <string name="tv_startTime">start-time:</string>
     <string name="tv_timeLength">time-length:</string>
+    <string name="title_activity_alter">AlterActivity</string>
+    <string name="tv_startTime_hint">choose a start-time</string>
+    <string name="tv_timeLength_hint">choose a time-length</string>
+    <string name="bt_choose">choose</string>
+    <string name="tv_progress">finished-progress：</string>
+    <string name="tv_content">content:</string>
+    <string name="bt_finished">ok</string>
+    <string name="et_content_hint">input your content</string>
 </resources>

@@ -15,15 +15,19 @@ class LogUtil {
         private val LOG_TAG = "ky_plan"
         private var DEBUG = true
 
-        public fun printI(tag: String, message: String) {
-            printI(LOG_TAG, message, null)
+        fun printI(message: String) {
+            printI("", message)
         }
 
-        public fun printI(tag: String, message: String, exception: Throwable?) {
+        fun printI(tag: String, message: String) {
+            printI(tag, message, null)
+        }
+
+        fun printI(tag: String, message: String, exception: Throwable?) {
             printI(tag, buildMsg(tag, message), exception, Log.INFO)
         }
 
-        public fun printI(tag: String, message: String, exception: Throwable?, level: Int) {
+        fun printI(tag: String, message: String, exception: Throwable?, level: Int) {
             if (DEBUG) {
                 when (level) {
                     Log.VERBOSE -> Log.v(tag, message, exception)
