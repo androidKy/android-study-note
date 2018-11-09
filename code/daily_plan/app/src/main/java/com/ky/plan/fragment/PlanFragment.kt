@@ -65,7 +65,7 @@ class PlanFragment : BaseFragment() {
             mDataList.add(baseModel)
         }
 
-       // planAdapter.notifyDataSetChanged()
+        // planAdapter.notifyDataSetChanged()
     }
 
     override fun loadData() {
@@ -81,7 +81,8 @@ class PlanFragment : BaseFragment() {
         planAdapter.notifyDataSetChanged()*/
     }
 
-
+    //TODO 2018-11-9 返回时，Fragment会重新创建
+    //TODO 2018-11-9 RecyclerView的notifyDataSetChanged()不生效，不能局部刷新
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1000) {
@@ -90,7 +91,6 @@ class PlanFragment : BaseFragment() {
 
             mDataList[mDataChangedIndex] = baseModel
             planAdapter.setDatas(mDataList)
-
         }
     }
 }
