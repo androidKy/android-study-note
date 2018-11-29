@@ -167,7 +167,7 @@
 
 * **Git在合并时遇到unrelated histories提示时无法merge**：[参考链接](https://blog.csdn.net/llllloj/article/details/52948234) 这是因为两个分支没有相同的commit记录联系，可以使用如下命令强行合并： **git merge <branchName> --allow-unrelated-histories** 。具体可参考上面的[git分支管理](#git分支管理)。
 
-
+* **ssh variant ‘simple' does not support setting port**：git config --global ssh.variant ssh。使用 ssh 方式拉取代码的时候，使用的命令带有端口号。而在 git 2.16.x 版本上 ssh variant 需要手动设置为 ssh。
 
 
 

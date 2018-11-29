@@ -1,0 +1,22 @@
+ext {
+    //android开发版本配置
+    android = [
+            compileSdkVersion: 27,
+            buildToolsVersion: "27.0.2",
+            applicationId    : "com.goldze.mvvmhabit",
+            minSdkVersion    : 15,
+            targetSdkVersion : 27,
+            versionCode      : 1,
+            versionName      : "1.0",
+    ]
+    //version配置
+    versions = [
+            "support-version": "27.0.2",
+            "junit-version"  : "4.12",
+    ]
+    //library依赖配置
+    dependencies = [
+            "rxjava"   : "io.reactivex.rxjava2:rxjava:2.2.3",
+            "rxandroid": "io.reactivex.rxjava2:rxandroid:2.1.0",
+    ]
+}
