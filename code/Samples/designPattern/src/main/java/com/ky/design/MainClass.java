@@ -18,7 +18,5 @@ public class MainClass {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-
-        //master head >>>
     }
 }
