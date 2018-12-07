@@ -25,6 +25,7 @@ public class MainClass {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+        
     }
 
     private static void testSinglePattern() {
