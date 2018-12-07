@@ -6,7 +6,6 @@ public class MainClass {
         System.out.println("main");
         System.out.println("currentThread id = " + Thread.currentThread().getId());
 
-        System.out.println("ԭ��ģʽ������������");
         PrototypePattern prototypePattern = new PrototypePattern();
         try {
             PrototypePattern cloneObj = (PrototypePattern) prototypePattern.clone();
