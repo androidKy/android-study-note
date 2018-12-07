@@ -6,7 +6,7 @@ public class MainClass {
         System.out.println("main");
         System.out.println("currentThread id = " + Thread.currentThread().getId());
 
-        System.out.println("Ô­ÐÍÄ£Ê½¡·¡·¡·¡·¡·¡·");
+        System.out.println("Ô­ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         PrototypePattern prototypePattern = new PrototypePattern();
         try {
             PrototypePattern cloneObj = (PrototypePattern) prototypePattern.clone();
@@ -20,6 +20,6 @@ public class MainClass {
             e.printStackTrace();
         }
 
-
+        //master head >>>
     }
 }
