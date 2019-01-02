@@ -198,6 +198,7 @@
 1. **zip**压缩工具：先把apk的后缀名改成 **.zip**，然后解压得到classes.dex文件（二进制class文件)。
 2. **dex2jar**工具：把classes.dex文件放到dex2jar根目录下，然后运行cmd命令：**d2j-dex2jar classes.dex** 把.dex文件反编译成jar包。
 3. **jd-gui**工具：查看jar。(ps:下载安装完成后可以在path路径下配置该工具的目录根路径，然后在cmd窗口输入命令：**jd-gui**直接打开)
+4. **jadx**工具：既可以查看jar，也可以直接反编译apk文件。
 
 ## ant打包脚本
 
@@ -210,7 +211,7 @@
 * 运行Android Studio的app/build.gradle文件的task进行编译打包apk。
 * 通过脚本进行压缩。
 
-[注]Ant的详细内容具体可参考Ant.md文件。
+[注]Ant的详细内容可参考[Ant.md文件](https://github.com/androidKy/android-study-note/blob/master/note/Ant.md)。
 
 ## 爬取素材
 

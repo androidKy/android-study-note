@@ -66,6 +66,8 @@
 | git reset --hard \<commitId>/<HEAD^> : 重置位置的同时，清空工作目录的改动<br />git reset --soft \<commitId>/<HEAD^>:重置位置的同时，保留工作目录和暂存区的内容，并把重置HEAD的位置所导致的新的文件差异放进暂存区。<br />git reset --mixed \<commitId>/<HEAD^>:重置位置的同时，保留工作目录的内容并清空暂存区。 | 重置HEAD以及它所指向的branch的位置                     |
 | git stash ：临时存放工作目录的改动，只作用于被track的文件<br />git stash -u : 作用于所有文件<br />git stash pop : 恢复之前的存放内容 | 中途打包                                               |
 | git reflog : 查看HEAD的移动历史<br />git checkout \<commitId> ：检出指定的commit<br />git checkout -b \<branch> : 恢复刚误删的分支 | 恢复刚误删除的分支                                     |
+| git cherry-pick \<commitId>                                  | 把某个commit提交到某个分支上                           |
+| git reflog <br/>git reset --hard \<commitid>                 | 恢复丢失的commit                                       |
 
 >  注：不再被引用直接或间接指向的 `commit`s 会在一定时间后被 Git 回收，所以使用 `reflog`来找回删除的 `branch` 的操作一定要及时，不然有可能会由于 `commit` 被回收而再也找不回来。
 
