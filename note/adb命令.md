@@ -32,4 +32,13 @@
 >
 > [参考链接](https://blog.csdn.net/slimboy123/article/details/54016830)
 
- 
+ # Linus命令
+
+## 导入文件到sytem高权限的目录下
+
+1. $su
+2. #mount
+3. #mount -o remount /dev/block/mtdblock0 /system
+4. #mount
+5. #cp /sdcard/tcpdump /system/bin 
+
