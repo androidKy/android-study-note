@@ -10,6 +10,11 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.internal.Utils;
 
 /**
  * description:
@@ -20,6 +25,8 @@ import android.util.Log;
 public class LooperActivity extends AppCompatActivity {
     private static final String TAG = "LooperActivity";
 
+    @BindView(R.id.textView)
+    TextView textView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +34,8 @@ public class LooperActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         looperTest();
+
+        ButterKnife.bind(this);
     }
 
     private void looperTest() {

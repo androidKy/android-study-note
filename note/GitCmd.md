@@ -30,7 +30,7 @@
 * git add . 提交当前目录下的所有文件 
 * git add README.md 提交当前目录下的README.md文件
 	 git commit -m "first commit"	提交到本地仓库  
-* git remote add origin https://github.com/github账户名/仓库名（仓库链接） 关联远程仓库
+* git remote add origin https://github.com/github账户名/仓库名（也就是仓库链接） 关联远程仓库
 	 git push -u origin master（master为分支名) 	提示输入github的账号和密码		将本地文件提交到远程仓库
 * git pull 将远程仓库的文件拉到本地仓库
 * git push origin <分支名> -force 强制让本地的commit覆盖远程的commit，当本地的commit和仓库的commit不同时
@@ -61,7 +61,7 @@
 | git commit --amend                                           | 修复当前提交的错误，生成一条新的commit替换当前的commit |
 | git rebase -i \<commitId>/HEAD^<br />在编辑界面指定需要操作的commit和操作类型<br/>git rebase --continue | 修改写错的commit                                       |
 | git reset --hard \<commitId>                                 | 撤销最新的提交，会撤销此次commit的修改内容             |
-| git rebase -i \<commitId>/HEAD^<br />删除想撤销的commit<br />git rebase --continue<br/>git rebase --abort 退出rebase | 撤销过往的提交                                         |
+| git rebase -i \<commitId>/HEAD^<br />删除想撤销的commit<br />git rebase --continue<br/>git rebase --abort 退出rebase |                                                        |
 | 出错内容在私有branch:本地内容修正后，git push origin \<branch> -f 强制push<br />出错内容在master: git revert \<commitId>/HEAD^ | 撤销已经push的commit                                   |
 | git reset --hard \<commitId>/<HEAD^> : 重置位置的同时，清空工作目录的改动<br />git reset --soft \<commitId>/<HEAD^>:重置位置的同时，保留工作目录和暂存区的内容，并把重置HEAD的位置所导致的新的文件差异放进暂存区。<br />git reset --mixed \<commitId>/<HEAD^>:重置位置的同时，保留工作目录的内容并清空暂存区。 | 重置HEAD以及它所指向的branch的位置                     |
 | git stash ：临时存放工作目录的改动，只作用于被track的文件<br />git stash -u : 作用于所有文件<br />git stash pop : 恢复之前的存放内容 | 中途打包                                               |

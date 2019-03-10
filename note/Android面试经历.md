@@ -64,6 +64,9 @@
 
 （13）ButterKnife和EventBus的工作原理是怎样的
 
+* ButterKnife: 
+* EventBus：通过反射和观察者模式实现，先通过反射注册订阅的方法，然后发送消息到相应的类的订阅方法中。
+
 （14）Android的事件分发机制是怎么样的
 
 （15）**内容提供者怎么实现给别的应用使用**
@@ -213,11 +216,12 @@
 [位运算符](https://blog.csdn.net/qq_35114086/article/details/70173329)
 
 [IntentService详解](http://blog.qiji.tech/archives/2693)
-	
+
 [service详解](https://blog.csdn.net/javazejian/article/details/52709857)
 
 [ListView和RecyclearView的区别](https://www.jianshu.com/p/f011fa974fbe)
 	
+
 	(7)进程间通信方式有哪些？
 	
 	**信号、信号量、消息队列、管道、共享内存、socket**	
@@ -253,8 +257,6 @@
 		优点：只要有网络存在，跨越任何限制，数据量大，快速。	缺点：受网络带宽限制和延时影响。
 	
 	（8）Activity、Window和View之间的关系。
-		
-	[参考链接](https://www.jianshu.com/p/a533467f5af5)
 	
 		答：Activity像一个工匠（整个模型控制单元），Window像窗户（承载模型），View像窗花（视图显示模型）。
 		Activity的启动是通过ActivityThread的main函数调用其attach方法，最终是在performLaunchActivity方法中通过类加载器构建Activity
@@ -264,7 +266,11 @@
 	
 	（9）怎么优化布局？
 
+[Activity、Window和View之间的关系](https://www.jianshu.com/p/a533467f5af5)
+
 ---
+
+
 
 # **三七互娱（offer）**
 
@@ -306,4 +312,114 @@
 
 # 广州市至真信息公司（offer)
 
-	
+# 北京慧博云通
+> 外派模式，由三星技术人员直接面试。
+
+```Groovy
+1.activity的生命周期和相应的生命周期具体做哪些事情，onCreate()和onStart()的区别？
+
+onCreate:view的初始化，不能做一些耗时的初始化操作，因为在这个生命周期AndroidUI还没渲染完成，也许会堵塞UI线程。
+onStart：做一些数据初始化的操作。
+onResume：做一些数据恢复的操作。
+onPause:做一些数据保存的操作。
+onStop：做一些关闭资源的操作。
+onDestroy:做一些销毁资源的操作。
+
+2.ANR为什么会发生？举个发生ANR的例子，怎么解决ANR？
+
+
+
+3.怎么解决一个Bug？如果是崩溃的bug能用断点解决吗？应该如何解决？
+
+4.如果给你十个bug，你怎么解决？
+
+5.Android各个版本的特点和不同，举个详细的例子。
+
+6.有什么需要问面试官的？
+
+```
+
+# 广州心娱网络科技有限公司
+
+> 先两个技术人员面试，再到技术总监
+
+1. recyclerView与listview的区别?还有各自的应用场景
+
+   
+
+2. handler机制原理，looper是怎么依附到指定的线程的？
+
+   
+
+3. 对线程池这一块熟悉吗？有哪几种线程池？创建线程的方式
+
+4. 用gradle怎样打包多个版本
+
+5. MVP模式的具体实现方法？怎么去销毁资源？**如果Activity销毁了，正在请求数据，这时是怎么处理的**
+
+6. **recyclerView怎么处理下拉刷新和上拉加载？**
+
+7. **git的rebase命令具体是怎么样的**
+
+8. 怎么用git一起开发
+
+9. java的垃圾回收机制？四种引用和具体的使用
+
+10. 自定义view：实现瀑布流**，具体怎么测量和子view的测量？**
+
+11. **Leakcanary的实现原理是怎么样的？**
+
+# 广州魔幻科技有限公司
+
+1. 问SDK项目：打jar包和aar包
+
+2. ava的垃圾回收机制？四种引用和具体的使用
+
+3. **glide的内存管理是怎么样的**
+
+4. service和线程的区别
+
+5. java的四种引用
+
+6. **两个对象相互持有，是不是会一直都不会被回收？**
+
+7. eventBus的实现原理？
+
+8. **ButterKnife的实现原理？**
+
+9. 对线程池的了解，**有哪几种线程池？**
+
+10. **怎样计算一张图片的大小？**
+    （1）将图片加载进内存时，会先解析图片文件本身的数据格式，然后还原为位图Bitmap，Bitmap的大小取决于像素点的数据格式以及分辨率。所以图片占用的内存的大小跟它自身的文件大小无关。
+
+    （2）图片占用的内存大小与图片所显示的控件大小无关。因为在还不知道控件大小也就是还没绘制时，图片已经加载进内存。
+
+    [Android中一张图片的内存大小](https://www.cnblogs.com/dasusu/p/9789389.html)
+
+11. 图片压缩与优化有哪几种方式？
+
+    （1）`设置图片格式`：png、jpeg和webp。
+
+    ​	PNG：无损压缩图片格式，支持Alpha通道，Android切图素材多采用此格式。
+
+    ​	JPEG：有损压缩图片格式，不支持背景透明，使用于图片等色彩丰富的大图压缩，不适合logo。
+
+    ​	WEBP:是一种同时提供了有损压缩和无损压缩的图片格式，派生自视频编码格式VP8，从谷歌官网来看,无损webp平均比png小26%，有损的webp平均比jpeg小25%~34%，无损webp支持Alpha通道，有损webp在一定的条件下同样支持，有损webp在Android4.0（API 14）之后支持，无损和透明在Android4.3（API18）之后支持。
+
+    （2）`质量压缩`：只改变图片在磁盘的大小，并不影响图片占用的内存大小，因为没有改变图片的分辨率。
+
+    
+    [Android图片压缩与优化 博客](https://blog.csdn.net/u013928412/article/details/80358597)
+
+12. 
+
+    
+
+
+
+​    
+
+
+
+
+
