@@ -1,20 +1,13 @@
 package com.ky.demo;
 
-import android.app.backup.BackupAgent;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.internal.Utils;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * description:
@@ -25,8 +18,8 @@ import butterknife.internal.Utils;
 public class LooperActivity extends AppCompatActivity {
     private static final String TAG = "LooperActivity";
 
-    @BindView(R.id.textView)
-    TextView textView;
+  /*  @BindView(R.id.textView)
+    TextView textView;*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +28,7 @@ public class LooperActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         looperTest();
 
-        ButterKnife.bind(this);
+       // ButterKnife.bind(this);
     }
 
     private void looperTest() {

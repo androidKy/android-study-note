@@ -345,7 +345,7 @@ onDestroy:做一些销毁资源的操作。
 
 1. recyclerView与listview的区别?还有各自的应用场景
 
-   
+   [listView原理解析](https://blog.csdn.net/guolin_blog/article/details/44996879)、[recyclerView原理解析]()
 
 2. handler机制原理，looper是怎么依附到指定的线程的？
 

@@ -32,6 +32,19 @@
 >
 > [参考链接](https://blog.csdn.net/slimboy123/article/details/54016830)
 
+## 快速定位 Android APP 当前页面（Activity / Fragment）
+> Android 如何快速定位当前页面是哪个Activity or Fragment
+>
+> (1)查看当前Activity ：adb shell "dumpsys window w | grep name="
+>
+> (2)查看当前栈顶的Activity ：adb shell dumpsys activity | grep "mFocusedActivity"
+>
+> (3)查看当前栈顶的Activity的Fragment ：adb shell dumpsys activity your.package.name
+> 或者：
+> adb shell dumpsys activity top
+>
+> 查看帮助：adb shell dumpsys activity -h
+
  # Linus命令
 
 ## 导入文件到sytem高权限的目录下
