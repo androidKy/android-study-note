@@ -110,6 +110,10 @@
    ```
    
    三、[**Lottie**](https://airbnb.design/introducing-lottie/)的使用和实现原理
+   
+2. LiveData+Databinding
+
+   
 
 ## 二、四大组件
 
@@ -134,20 +138,24 @@
 
 * JNI怎么用
 
-  
+  [这是用AndroidStudio 3.5创建使用JNI的Demo](https://github.com/androidKy/android-study-note/tree/master/code/NativeC)
 
 * JNI的原理
+
+  原理是
 
 ## 七、常用的第三方类库
 
 * 依赖注入的[**Dagger**](https://github.com/google/dagger)
-* 
+* 图片框架Glide
 
 ## 八、Android的设计模式和六大原则
 
 ## 九、内存优化和性能提高
 
-## 十、其他
+## 十、应用打包和签名
+
+## 十一、其他
 
 ### 1、ANR的定位和修正
 
@@ -160,6 +168,15 @@
 ### 5、减小APK体积
 
 
+
+## 十二、项目中遇到的问题
+
+1. Android 9.0，第三方应用没有sdcard的访问权限
+2. Android7.0后，第三方应用要访问非本应用的数据必须用FileProvider去访问
+3. 选择照片，相机拍照和录制视频的功能
+4. WebView自动播放
+5. 第三方应用的getExternalFilesDir相应的目录下有一定的大小，超过限制的大小会造成闪退
+6. gralde打包注意事项
 
 
 

@@ -23,4 +23,8 @@ class MainActivity : AppCompatActivity() {
     private fun getString(var1: String, var2: Int): String {
         return var1
     }
+
+    override fun shouldShowRequestPermissionRationale(permission: String): Boolean {
+        return super.shouldShowRequestPermissionRationale(permission)
+    }
 }

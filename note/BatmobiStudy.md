@@ -1,3 +1,5 @@
+[TOC]
+
 # BatmobiStudy
 
 ## JS调试
@@ -25,6 +27,8 @@
      ~~~
 
   3. 然后调试webView与通过远程调试调试网页相同
+  
+  （注意：由于无法访问 [https://chrome-devtools-frontend.appspot.com](https://chrome-devtools-frontend.appspot.com/)，会出现空白页面，解决办法有两个：一、简单直接翻墙；二、添加离线包，[参考教程](https://www.cnblogs.com/slmk/p/9832081.html)
 
 ## Charles抓包测试
 
@@ -122,7 +126,9 @@
 
 ### 混淆的常见配置
 
-> [参考链接](https://www.jianshu.com/p/b5b2a5dfaaf4)
+> [参考链接1](https://www.jianshu.com/p/b5b2a5dfaaf4)
+>
+> [参考链接2](https://www.jianshu.com/p/90feb5c50cce)
 
 * Proguard关键字
 
@@ -136,37 +142,52 @@
   | keepclasseswithmembers     | 保留类和类中的成员，防止被混淆或移除，保留指明的成员         |
   | keepclasseswithmembernames | 保留类和类中的成员，防止被混淆，保留指明的成员，成员没有引用会被移除 |
 
-  1. 保留某个包下面的类以及子包：
+  ```kotlin
+  //不混淆某个类
+  -keep public class name.huihui.example.Test { *; }
+  //不混淆某个类的子类
+  -keep public class * extends name.huihui.example.Test { *; }
+  //不混淆所有类名中包含了“model”的类及其成员
+  -keep public class **.*model*.** {*;}
+  //不混淆某个接口的实现
+  -keep class * implements name.huihui.example.TestInterface { *; }
+  //不混淆某个类的构造方法
+  -keepclassmembers class name.huihui.example.Test { 
+      public <init>(); 
+  }
+  //不混淆某个类的特定的方法
+  -keepclassmembers class name.huihui.example.Test { 
+      public void test(java.lang.String); 
+  }
+  //不混淆某个类的内部类
+  -keep class name.huihui.example.Test$* {
+          *;
+   }
+  //两个常用的混淆命令，注意：
+  //一颗星表示只是保持该包下的类名，而子包下的类名还是会被混淆；
+  //两颗星表示把本包和所含子包下的类名都保持；
+  -keep class com.suchengkeji.android.ui.**
+  -keep class com.suchengkeji.android.ui.*
+  //用以上方法保持类后，你会发现类名虽然未混淆，但里面的具体方法和变量命名还是变了，
+  //如果既想保持类名，又想保持里面的内容不被混淆，我们就需要以下方法了
+  
+  //不混淆某个包所有的类
+  -keep class com.suchengkeji.android.bean.** { *; }
+  //在此基础上，我们也可以使用Java的基本规则来保护特定类不被混淆，比如我们可以用extend，implement等这些Java规则。如下
+  # 保留我们使用的四大组件，自定义的Application等等这些类不被混淆
+  # 因为这些子类都有可能被外部调用
+  -keep public class * extends android.app.Activity
+  -keep public class * extends android.app.Appliction
+  -keep public class * extends android.app.Service
+  -keep public class * extends android.content.BroadcastReceiver
+  -keep public class * extends android.content.ContentProvider
+  -keep public class * extends android.app.backup.BackupAgentHelper
+  -keep public class * extends android.preference.Preference
+  -keep public class * extends android.view.View
+  -keep public class com.android.vending.licensing.ILicensingService
+  ```
 
-     **-keep public class com.batmobi.ky.\*\*{\*;} **
-
-     注：两个**表示保留子包，一个\*只保留当前包下的类。
-
-  2. 保留某个类的方法和成员变量：
-
-     **-keep public class com.batmobi.ky.ClassName{**
-
-     	**public \<methods\>;**
-			
-     	**public \<fields\>;**
-
-     **}**
-
-  3. 保留实体类的set和get方法
-
-     **-keep public class com.batmobi.ky.bean.\*\*{**
-
-     	**public void set\*(\*\*\*);**
-			
-     	**public \*\*\* get*() ;**
-			
-     	**public \*\*\* is\*();**
-
-     **}**
-
-  4. 不混淆某个类
-
-     **-dontwarn com.batmobi.ky.ClassName**
+  
 
 * Proguard通配符
 
