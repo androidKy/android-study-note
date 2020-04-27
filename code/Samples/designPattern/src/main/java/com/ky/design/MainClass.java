@@ -6,8 +6,8 @@ public class MainClass {
     private static SingletonPattern singletonPattern02;
 
     public static void main(String... arg) {
-        System.out.println("main");
-        System.out.println("currentThread id = " + Thread.currentThread().getId());
+        // System.out.println("main");
+        //  System.out.println("currentThread id = " + Thread.currentThread().getId());
 
         testSinglePattern();
     }
@@ -25,21 +25,22 @@ public class MainClass {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-        
+
     }
 
     private static void testSinglePattern() {
 
         new Thread(() -> {
-            singletonPattern01 = SingletonPattern.getInstance();
 
-            System.out.println("singletonPattern01 : " + singletonPattern01.toString());
+            singletonPattern01 = SingletonPattern.getInstance();
+            System.out.println("time:" + System.currentTimeMillis() + " singletonPattern01 : " + singletonPattern01.toString());
+
         }).start();
 
         new Thread(() -> {
             singletonPattern02 = SingletonPattern.getInstance();
 
-            System.out.println("singletonPattern02 : " + singletonPattern02.toString());
+            System.out.println("time:" + System.currentTimeMillis() + " singletonPattern02 : " + singletonPattern02.toString());
         }).start();
     }
 }

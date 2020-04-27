@@ -15,7 +15,7 @@ public class MyAbsListView {
         layoutChildren();
     }
 
-    protected void layoutChildren() {
+    public void layoutChildren() {
         Log.i(TAG, "MyAbsListView layoutChildren: ");
     }
 }

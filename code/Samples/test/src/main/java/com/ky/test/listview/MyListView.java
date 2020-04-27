@@ -11,8 +11,8 @@ public class MyListView extends MyAbsListView {
     private static final String TAG = "MyListView";
 
     @Override
-    protected void layoutChildren() {
-        super.layoutChildren();
+    public void layoutChildren() {
+        //super.layoutChildren();
         Log.i(TAG, "layoutChildren: ");
     }
 }
